@@ -1,0 +1,7 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <h1>Home page for Feature Lab</h1>
+    {% for request in requests %}
+        <h3>{{ request.name }}</h3>
+    {% endfor %}
+{% endblock content %}
