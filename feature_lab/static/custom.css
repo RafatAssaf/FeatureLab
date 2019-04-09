@@ -1,0 +1,7 @@
+
+a.request-card,
+a.request-card:hover {
+  color: inherit;
+  text-decoration: none;
+  max-width: 35rem;
+}

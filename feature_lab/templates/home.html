@@ -2,6 +2,21 @@
 {% block content %}
     <h1>Home page for Feature Lab</h1>
     {% for request in requests %}
-        <h3>{{ request.name }}</h3>
+        <div>
+            <a href="/about" class="request-card">
+                <div class="card bg-light mb-3 p-3 mr-0">
+                    <div class="p-1">
+                        <h5 class="card-title">{{ request.title }}</h5>
+                        <p class="card-text">{{ request.description }}</p>
+                        <span class="badge badge-info">{{ request.product.name }}</span>
+                    </div>
+                    <div class="p-1 border-0 row">
+                        <span class="card-text col">Priority: {{ request.priority }}</span>
+                        <span class="col"></span>
+                        <span class="card-text col">{{ request.client.name }}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
     {% endfor %}
 {% endblock content %}
