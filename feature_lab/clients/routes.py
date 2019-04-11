@@ -44,14 +44,14 @@ def feature_request():
     return render_template('request.html')
 
 
+@clients.route('/client/<client_id>')
+def client(client_id):
+    return render_template('client.html', client=clients_data[0])
+
+
 @clients.route('/clients')
 def clients_list():
     return render_template('clients.html', clients=clients_data)
-
-
-@clients.route('/products/<client>')
-def products_list(client):
-    return "products list: " + client
 
 
 @clients.route('/create_client', methods=['GET', 'POST'])
