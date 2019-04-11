@@ -1,0 +1,105 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="p-3">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Create New Feature Request</legend>
+                <div class="form-group">
+                    {{ form.title.label(class="form-control-label") }}
+                    {% if form.title.errors %}
+                        {{ form.title(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.title.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.title(class="form-control form-control-lg") }}
+                    {% endif%}
+                </div>
+                <div class="form-group">
+                    {{ form.description.label(class="form-control-label") }}
+                    {% if form.description.errors %}
+                        {{ form.description(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.description.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.description(class="form-control form-control-lg") }}
+                    {% endif%}
+                </div>
+                <div class="form-group">
+                    {{ form.client.label(class="form-control-label") }}
+                    {{ form.client(class="form-control form-control-lg") }}
+                </div>
+                <div class="form-group">
+                    {{ form.product.label(class="form-control-label") }}
+                    {{ form.product(class="form-control form-control-lg") }}
+                </div>
+                <div class="form-group">
+                    {{ form.product_area.label(class="form-control-label") }}
+                    {{ form.product_area(class="form-control form-control-lg") }}
+                </div>
+                <div class="form-group">
+                    {{ form.priority.label(class="form-control-label") }}
+                    {{ form.priority(class="form-control form-control-lg") }}
+                </div>
+                <div class="form-group">
+                    {{ form.created_at.label(class="form-control-label") }}
+                    {{ form.created_at(class="form-control form-control-lg") }}
+                </div>
+                <div class="form-group">
+                    {{ form.target_date.label(class="form-control-label") }}
+                    {{ form.target_date(class="form-control form-control-lg") }}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+    <script>
+        let client_input = document.getElementById('client')
+        let product_input = document.getElementById('product')
+        let product_area_input = document.getElementById('product_area')
+
+        // handle client input change
+        client_input.onchange = function() {
+            $.ajax({ // fetch the products of the selected client
+                url: '/products/' + client_input.value
+            }).done(function(res) {
+                if(res.products) {
+                    // update HTML content
+                    product_input.innerHTML = res.products.reduce(function(acc, prod){
+                        return acc + '<option value="' + prod.name + '">' + prod.name + '</option>'
+                    }, '')
+                    // update product areas as well
+                    update_areas(res.products[0].name)
+                } else {
+                    product_input.innerHTML = '<option value="0">Invalid</option>'
+                }
+            })
+        }
+
+        let update_areas = function(product) {
+            $.ajax({ // fetch areas for selected product
+                url: '/product_areas/' + product
+            }).done(function(res) {
+                if(res.areas) {
+                    // update HTML content
+                    product_area_input.innerHTML = res.areas.reduce(function(acc, area){
+                        return acc + '<option value="' + area + '">' + area + '</option>'
+                    }, '')
+                } else {
+                    product_area_input.innerHTML = '<option value="0">Invalid</option>'
+                }
+            })
+        }
+
+        // when changing the selected product, update product areas
+        product_input.onchange = function() { update_areas(product_input.value) }
+    </script>
+{% endblock content %}

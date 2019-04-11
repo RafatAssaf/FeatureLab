@@ -1,9 +1,9 @@
 {% extends 'layout.html' %}
 {% block content %}
-    <h1>Home page for Feature Lab</h1>
+    <h1 class="mb-3">Home page for Feature Lab</h1>
     {% for request in requests %}
         <div>
-            <a href="/about" class="request-card">
+            <a href="/request" class="request-card">
                 <div class="card bg-light mb-3 p-3 mr-0">
                     <div class="p-1">
                         <h5 class="card-title">{{ request.title }}</h5>
