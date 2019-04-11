@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, IntegerField, SubmitField, SelectField
-from wtforms.fields.html5 import DateField
-from wtforms.validators import DataRequired, Length, Optional, StopValidation
-from wtforms.widgets.html5 import NumberInput
+from wtforms.fields.html5 import DateField, EmailField, TelField
+from wtforms.validators import DataRequired, Length, Email
+from wtforms.widgets.html5 import NumberInput, TelInput
 from datetime import date
 
 
@@ -34,4 +34,15 @@ class CreateRequestForm(FlaskForm):
     target_date = DateField('Target Date',
                             validators=[DataRequired()])
 
+    submit = SubmitField('Create')
+
+
+class CreateClientForm(FlaskForm):
+    name = StringField('Name',
+                       validators=[DataRequired(), Length(min=8, max=50)])
+    email = EmailField('Email',
+                       validators=[DataRequired(), Email()])
+    phone_number = IntegerField('Phone Number',
+                                widget=NumberInput(min=0),
+                                validators=[DataRequired()])
     submit = SubmitField('Create')
