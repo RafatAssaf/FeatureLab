@@ -9,10 +9,12 @@ clients_data = [
         'products': [
             {
                 'name': 'Prod-A',
+                'description': 'some testing description to display on the page',
                 'areas': ['Search', 'User Account']
             },
             {
                 'name': 'Prod-B',
+                'description': 'some testing description to display on the page',
                 'areas': ['Map']
             }
         ],
@@ -25,10 +27,12 @@ clients_data = [
         'products': [
             {
                 'name': 'Prod-C',
+                'description': 'some testing description to display on the page',
                 'areas': ['Landing', 'Notification']
             },
             {
                 'name': 'Prod-D',
+                'description': 'some testing description to display on the page',
                 'areas': ['Onboarding']
             }
         ],
@@ -38,21 +42,28 @@ clients_data = [
     }
 ]
 
+request_data = {
+    'title': 'Adding auto complete',
+    'description': 'Adding auto complete functionality to search pages',
+    'client': 'CompanyX',
+    'product': 'Prod-A',
+    'product_area': 'Search',
+    'priority': 2,
+    'target_date': '2019-15-8',
+    'created_at': '2019-12-4'
+}
+
 
 @clients.route('/request/<request_id>')
 def feature_request(request_id):
-    request_data = {
-        'title': 'Adding auto complete',
-        'description': 'Adding auto complete functionality to search pages',
-        'client': 'CompanyX',
-        'product': 'Prod-A',
-        'product_area': 'Search',
-        'priority': 2,
-        'target_date': '2019-15-8',
-        'created_at': '2019-12-4'
-    }
-
     return render_template('request.html', request=request_data)
+
+
+@clients.route('/product/<product_id>')
+def product(product_id):
+    product_data = clients_data[0]['products'][0]
+    product_data['requests'] = [request_data]
+    return render_template('product.html', product=product_data)
 
 
 @clients.route('/client/<client_id>')

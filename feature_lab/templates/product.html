@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <h1>{{product.name}}</h1>
+    <h6>{{product.description}}</h6>
+    <h6 class="mb-4">Owner: CompanyX</h6>
+    <h3>Product Feature Requests</h3>
+    {% for request in product.requests %}
+        <div>
+            <a href="/request/5" class="request-card">
+                <div class="card bg-light mb-3 p-3 mr-0">
+                    <div class="p-1">
+                        <h5 class="card-title">{{ request.title }}</h5>
+                        <p class="card-text">{{ request.description }}</p>
+                        <span class="badge badge-info">{{ request.product }}</span>
+                    </div>
+                    <div class="p-1 border-0 row">
+                        <span class="card-text col">Priority: {{ request.priority }}</span>
+                        <span class="col"></span>
+                        <span class="card-text col">{{ request.client }}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+{% endblock content %}
