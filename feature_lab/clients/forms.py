@@ -33,13 +33,14 @@ class CreateRequestForm(FlaskForm):
                            default=date.today())
     target_date = DateField('Target Date',
                             validators=[DataRequired()])
-
     submit = SubmitField('Create')
 
 
 class CreateClientForm(FlaskForm):
     name = StringField('Name',
                        validators=[DataRequired(), Length(min=8, max=50)])
+    bio = TextAreaField('Bio',
+                        validators=[DataRequired()])
     email = EmailField('Email',
                        validators=[DataRequired(), Email()])
     phone_number = IntegerField('Phone Number',

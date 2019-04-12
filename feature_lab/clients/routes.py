@@ -39,9 +39,20 @@ clients_data = [
 ]
 
 
-@clients.route('/request')
-def feature_request():
-    return render_template('request.html')
+@clients.route('/request/<request_id>')
+def feature_request(request_id):
+    request_data = {
+        'title': 'Adding auto complete',
+        'description': 'Adding auto complete functionality to search pages',
+        'client': 'CompanyX',
+        'product': 'Prod-A',
+        'product_area': 'Search',
+        'priority': 2,
+        'target_date': '2019-15-8',
+        'created_at': '2019-12-4'
+    }
+
+    return render_template('request.html', request=request_data)
 
 
 @clients.route('/client/<client_id>')

@@ -1,4 +1,36 @@
 {% extends 'layout.html' %}
 {% block content %}
-    <h1>Request page for Feature Lab</h1>
+    <h1>{{request.title}}</h1>
+    <h6 class="pb-2">{{request.description}}</h6>
+    <table class="table table-striped border-bottom pb-3">
+        <tbody>
+            <tr>
+                <th scope="row">Priority</th>
+                <td>{{request.priority}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Creation Date</th>
+                <td>{{request.created_at}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Target Date</th>
+                <td>{{request.target_date}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Client</th>
+                <td>{{request.client}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Product</th>
+                <td>{{request.product}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Product Area</th>
+                <td>{{request.product_area}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-info">Mark As Done</button>
+    <button class="btn btn-info">Edit</button>
+    <button class="btn btn-danger">Delete</button>
 {% endblock content %}
