@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, jsonify, request
-from feature_lab.clients.forms import CreateRequestForm, CreateClientForm
+from feature_lab.clients.forms import CreateRequestForm, CreateProductForm, CreateClientForm
 
 clients = Blueprint('clients', __name__)
 
@@ -84,6 +84,17 @@ def create_client():
         return redirect(url_for('main.home'))
     else:
         return render_template('create_client.html', form=form)
+
+
+@clients.route('/create_product', methods=['GET', 'POST'])
+def create_product():
+    form = CreateProductForm()
+    form.client.choices = [(client['name'], client['name']) for client in clients_data]  # initialize with clients
+    if form.validate_on_submit():
+        flash('Product {} for client {} has been successfully created!'.format(form.name.data, form.client.data))
+        return redirect(url_for('clients.client', client_id=form.client.data))
+    else:
+        return render_template('create_product.html', form=form)
 
 
 @clients.route('/create_request', methods=['GET', 'POST'])

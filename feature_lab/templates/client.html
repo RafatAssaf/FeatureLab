@@ -1,9 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
     <h1>{{client.name}}</h1>
-    <h6>{{client.email}}</h6>
-    <h6>{{client.phone_number}}</h6>
-    <h6 class="mb-4">Created: 2019-15-1</h6>
+    <h3>Products</h3>
     {% for product in client.products %}
         <div>
             <a href="/product/5" class="request-card">
@@ -19,4 +17,5 @@
             </a>
         </div>
     {% endfor %}
+    <button class="btn btn-outline-info" onclick="window.location='/create_product'">Add Product</button>
 {% endblock content %}
