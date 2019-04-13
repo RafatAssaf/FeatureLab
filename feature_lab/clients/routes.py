@@ -106,6 +106,7 @@ def create_request():
 
     if form.validate_on_submit():
         flash('Request was created successfully!', 'success')
+        print(form.target_date.data)
         return redirect(url_for('main.home'))
     else:
         return render_template('create_request.html', form=form)
