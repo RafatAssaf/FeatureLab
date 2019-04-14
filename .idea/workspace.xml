@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a57f3a1-5c24-4c74-a711-9ea992d6bfc2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/feature_lab/templates/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feature_lab/users/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feature_lab/users/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feature_lab/users/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/feature_lab/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/feature_lab/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feature_lab/clients/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/feature_lab/clients/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feature_lab/clients/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/feature_lab/clients/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feature_lab/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/feature_lab/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feature_lab/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/feature_lab/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feature_lab/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/feature_lab/templates/layout.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,23 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/feature_lab/clients/routes.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="107" column="61" lean-forward="true" selection-start-line="107" selection-start-column="61" selection-end-line="107" selection-end-column="61" />
-              <folding>
-                <element signature="e#0#88#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/feature_lab/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+            <state relative-caret-position="209">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -44,30 +34,24 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/run.py">
+        <entry file="file://$PROJECT_DIR$/feature_lab/users/routes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="34" lean-forward="true" selection-start-column="34" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/feature_lab/config.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/feature_lab/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="100" column="38" selection-start-line="100" selection-start-column="38" selection-end-line="100" selection-end-column="38" />
+            <state relative-caret-position="133">
+              <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
               <folding>
-                <element signature="e#0#29#0" expanded="true" />
+                <element signature="e#0#44#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/feature_lab/users/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="12" column="33" lean-forward="true" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -76,11 +60,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/feature_lab/clients/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="152">
+              <caret line="14" column="12" lean-forward="true" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/feature_lab/templates/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -97,6 +90,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>request</find>
+      <find>reset_req</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -114,7 +108,6 @@
         <option value="$PROJECT_DIR$/feature_lab/static/custom.css" />
         <option value="$PROJECT_DIR$/feature_lab/main/routes.py" />
         <option value="$PROJECT_DIR$/feature_lab/templates/create_request.html" />
-        <option value="$PROJECT_DIR$/feature_lab/templates/layout.html" />
         <option value="$PROJECT_DIR$/feature_lab/templates/clients.html" />
         <option value="$PROJECT_DIR$/feature_lab/templates/about.html" />
         <option value="$PROJECT_DIR$/feature_lab/templates/create_client.html" />
@@ -125,10 +118,14 @@
         <option value="$PROJECT_DIR$/feature_lab/templates/create_product.html" />
         <option value="$PROJECT_DIR$/feature_lab/config.py" />
         <option value="$PROJECT_DIR$/run.py" />
-        <option value="$PROJECT_DIR$/feature_lab/__init__.py" />
         <option value="$PROJECT_DIR$/feature_lab/clients/forms.py" />
-        <option value="$PROJECT_DIR$/feature_lab/models.py" />
         <option value="$PROJECT_DIR$/feature_lab/clients/routes.py" />
+        <option value="$PROJECT_DIR$/feature_lab/models.py" />
+        <option value="$PROJECT_DIR$/feature_lab/templates/layout.html" />
+        <option value="$PROJECT_DIR$/feature_lab/__init__.py" />
+        <option value="$PROJECT_DIR$/feature_lab/users/forms.py" />
+        <option value="$PROJECT_DIR$/feature_lab/users/routes.py" />
+        <option value="$PROJECT_DIR$/feature_lab/templates/login.html" />
       </list>
     </option>
   </component>
@@ -146,6 +143,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -164,11 +162,22 @@
               <item name="feature_lab" type="462c0819:PsiDirectoryNode" />
               <item name="clients" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="featureLab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="featureLab" type="462c0819:PsiDirectoryNode" />
+              <item name="feature_lab" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="featureLab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="featureLab" type="462c0819:PsiDirectoryNode" />
+              <item name="feature_lab" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -246,9 +255,9 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.5005291" side_tool="true" weight="0.17495899" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4994709" visible="true" weight="0.17495899" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4994709" visible="true" weight="0.17495899" />
       <window_info id="Structure" order="2" sideWeight="0.5005291" side_tool="true" weight="0.17495899" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.33439153" />
+      <window_info anchor="bottom" id="Terminal" order="0" visible="true" weight="0.33439153" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="2" weight="0.32910052" />
       <window_info anchor="bottom" id="Message" order="3" />
@@ -306,16 +315,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feature_lab/templates/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-          <folding>
-            <element signature="n#style#0;n#main#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/feature_lab/templates/request.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
@@ -327,13 +326,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="19" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feature_lab/templates/about.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="19" selection-end-line="3" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -365,13 +357,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feature_lab/templates/create_request.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-171">
-          <caret line="18" column="30" lean-forward="true" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/feature_lab/templates/client.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -396,16 +381,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feature_lab/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/run.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -420,33 +395,99 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/feature_lab/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="94" column="29" lean-forward="true" selection-start-line="94" selection-start-column="29" selection-end-line="94" selection-end-column="29" />
+          <folding>
+            <element signature="e#32#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature_lab/templates/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="19" selection-end-line="3" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature_lab/templates/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="32" column="40" lean-forward="true" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
+          <folding>
+            <element signature="n#style#0;n#main#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature_lab/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature_lab/users/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/feature_lab/clients/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="152">
+          <caret line="14" column="12" lean-forward="true" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feature_lab/models.py">
+    <entry file="file://$PROJECT_DIR$/feature_lab/templates/create_request.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="100" column="38" selection-start-line="100" selection-start-column="38" selection-end-line="100" selection-end-column="38" />
+        <state relative-caret-position="342">
+          <caret line="18" column="30" lean-forward="true" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature_lab/users/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="33" lean-forward="true" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
           <folding>
-            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/feature_lab/clients/routes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="107" column="61" lean-forward="true" selection-start-line="107" selection-start-column="61" selection-end-line="107" selection-end-column="61" />
+        <state relative-caret-position="-342">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
           <folding>
             <element signature="e#0#88#0" expanded="true" />
+            <element signature="e#240#1382#0" />
+            <element signature="e#1399#1674#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature_lab/users/routes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature_lab/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
         </state>
       </provider>
     </entry>
