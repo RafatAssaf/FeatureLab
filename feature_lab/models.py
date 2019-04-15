@@ -1,7 +1,12 @@
 # from flask import current_app
-from feature_lab import db
+from feature_lab import db, login_manager
 from datetime import datetime
 import enum
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
 class User(db.Model):
@@ -27,6 +32,7 @@ class Client(db.Model):
     name = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     bio = db.Column(db.Text(), nullable=False)
+    priority = db.Column(db.Integer, nullable=False)
     phone_number = db.Column(db.String(15))
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     products = db.relationship('Product', backref='owner', lazy=True)
@@ -38,10 +44,12 @@ class Client(db.Model):
                  name,
                  email,
                  bio,
+                 priority,
                  phone_number):
         self.name = name
         self.email = email
         self.bio = bio
+        self.priority = priority
         self.phone_number = phone_number
 
 
@@ -78,7 +86,6 @@ class FeatureRequest(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(30), unique=True, nullable=False)
     description = db.Column(db.Text(), nullable=False)
-    priority = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     target_date = db.Column(db.DateTime, nullable=False)
     product_area = db.Column(db.String())
@@ -90,14 +97,12 @@ class FeatureRequest(db.Model):
     def __init__(self,
                  title,
                  description,
-                 priority,
                  created_at,
                  target_date,
                  product_area,
                  product_id):
         self.title = title
         self.description = description
-        self.priority = priority
         self.created_at = datetime.strptime(created_at, '%Y-%m-%d')
         self.target_date = datetime.strptime(target_date, '%Y-%m-%d')
         self.product_area = product_area

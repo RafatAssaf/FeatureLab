@@ -26,8 +26,6 @@ class CreateRequestForm(FlaskForm):
                                       choices=[])
     product_area = NoValidationSelectField('Product Area',
                                            choices=[])
-    priority = IntegerField('Priority', widget=NumberInput(min=0),
-                            validators=[DataRequired()])
     created_at = DateField('Created At',
                            validators=[DataRequired()],
                            default=date.today())
@@ -59,4 +57,6 @@ class CreateClientForm(FlaskForm):
     phone_number = IntegerField('Phone Number',
                                 widget=NumberInput(min=0),
                                 validators=[DataRequired()])
+    priority = IntegerField('Priority', widget=NumberInput(min=0),
+                            validators=[DataRequired()])
     submit = SubmitField('Create')

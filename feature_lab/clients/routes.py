@@ -20,7 +20,8 @@ clients_data = [
         ],
         'email': 'companyx@example.com',
         'phone_number': '+1 293 987 872',
-        'created_at': '2017-09-10'
+        'created_at': '2017-09-10',
+        'priority': 1
     },
     {
         'name': 'CompanyY',
@@ -38,7 +39,8 @@ clients_data = [
         ],
         'email': 'companyy@example.com',
         'phone_number': '+1 123 987 456',
-        'created_at': '2015-05-10'
+        'created_at': '2015-05-10',
+        'priority': 2
     }
 ]
 
@@ -48,7 +50,6 @@ request_data = {
     'client': 'CompanyX',
     'product': 'Prod-A',
     'product_area': 'Search',
-    'priority': 2,
     'target_date': '2019-15-8',
     'created_at': '2019-12-4'
 }

@@ -2,9 +2,11 @@ from flask import Flask
 from feature_lab.config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+from flask_login import LoginManager
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
+login_manager = LoginManager()
 
 
 def create_app(config_class=Config):
@@ -16,6 +18,7 @@ def create_app(config_class=Config):
 
     db.init_app(app)
     bcrypt.init_app(app)
+    login_manager.init_app(app)
 
     # importing those after initializing db with app
     from feature_lab.main.routes import main

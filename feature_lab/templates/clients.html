@@ -7,6 +7,7 @@
             <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Created At</th>
+            <th scope="col">Priority</th>
             <th scope="col">Phone Number</th>
             <th scope="col">Products</th>
         </tr>
@@ -17,6 +18,7 @@
                 <th scope="row">{{client.name}}</th>
                 <td>{{client.email}}</td>
                 <td>{{client.created_at}}</td>
+                <td>{{client.priority}}</td>
                 <td>{{client.phone_number}}</td>
                 <td><a href="/client/{{client.name}}">View Products</a></td>
             </tr>
