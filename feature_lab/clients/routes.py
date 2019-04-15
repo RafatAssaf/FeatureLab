@@ -64,6 +64,7 @@ def feature_request(request_id):
 def product(product_id):
     product_data = clients_data[0]['products'][0]
     product_data['requests'] = [request_data]
+    jsonify
     return render_template('product.html', product=product_data)
 
 

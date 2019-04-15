@@ -16,7 +16,7 @@ class User(db.Model):
     password = db.Column(db.String(60), nullable=False)
 
     def __repr__(self):
-        return "User({}), with ID: {}, and email: {}".format(self.username, self.id, self.email)
+        return "User('username': {}, id: {}, email: {})".format(self.username, self.id, self.email)
 
     def __init__(self,
                  username,
@@ -38,7 +38,7 @@ class Client(db.Model):
     products = db.relationship('Product', backref='owner', lazy=True)
 
     def __repr__(self):
-        return "Client ({}), Created At: {}, with ID: {}".format(self.name, self.created_at, self.id)
+        return "Client (name: {}, id: {}, created_at: {})".format(self.name, self.created_at, self.id)
 
     def __init__(self,
                  name,
@@ -58,11 +58,10 @@ class Product(db.Model):
     name = db.Column(db.String(20), unique=True, nullable=False)
     description = db.Column(db.Text(), nullable=False)
     owner_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
-    #  requests relationship
-    areas = None
+    requests = db.relationship('FeatureRequest', backref='product', lazy=True)
 
     def __repr__(self):
-        return 'Product({}), of ID: {}'.format(self.name, self.id)
+        return 'Product(name: {}, id: {})'.format(self.name, self.id)
 
     def __init__(self,
                  name,
@@ -90,9 +89,10 @@ class FeatureRequest(db.Model):
     target_date = db.Column(db.DateTime, nullable=False)
     product_area = db.Column(db.String())
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+    client_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
 
     def __repr__(self):
-        return 'Request ({}), of ID: {}'.format(self.title, self.id)
+        return 'Request (title: {}, id: {})'.format(self.title, self.id)
 
     def __init__(self,
                  title,
@@ -100,10 +100,12 @@ class FeatureRequest(db.Model):
                  created_at,
                  target_date,
                  product_area,
-                 product_id):
+                 product_id,
+                 client_id):
         self.title = title
         self.description = description
         self.created_at = datetime.strptime(created_at, '%Y-%m-%d')
         self.target_date = datetime.strptime(target_date, '%Y-%m-%d')
         self.product_area = product_area
         self.product_id = product_id
+        self.client_id = client_id
