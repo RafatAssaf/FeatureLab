@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, url_for
+from flask_login import current_user
 
 main = Blueprint('main', __name__)
 
@@ -105,6 +106,8 @@ mock_requests = [
 @main.route('/')
 @main.route('/home')
 def home():
+    if not current_user.is_authenticated:
+        return redirect(url_for('users.login'))
     return render_template('home.html', requests=mock_requests, title='Home')
 
 

@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, jsonify, request
 from feature_lab.clients.forms import CreateRequestForm, CreateProductForm, CreateClientForm
+from flask_login import login_required
 
 clients = Blueprint('clients', __name__)
 
@@ -56,11 +57,13 @@ request_data = {
 
 
 @clients.route('/request/<request_id>')
+@login_required
 def feature_request(request_id):
     return render_template('request.html', request=request_data)
 
 
 @clients.route('/product/<product_id>')
+@login_required
 def product(product_id):
     product_data = clients_data[0]['products'][0]
     product_data['requests'] = [request_data]
@@ -69,16 +72,19 @@ def product(product_id):
 
 
 @clients.route('/client/<client_id>')
+@login_required
 def client(client_id):
     return render_template('client.html', client=clients_data[0])
 
 
 @clients.route('/clients')
+@login_required
 def clients_list():
     return render_template('clients.html', clients=clients_data)
 
 
 @clients.route('/create_client', methods=['GET', 'POST'])
+@login_required
 def create_client():
     form = CreateClientForm()
     if form.validate_on_submit():
@@ -89,6 +95,7 @@ def create_client():
 
 
 @clients.route('/create_product', methods=['GET', 'POST'])
+@login_required
 def create_product():
     form = CreateProductForm()
     form.client.choices = [(client['name'], client['name']) for client in clients_data]  # initialize with clients
@@ -100,6 +107,7 @@ def create_product():
 
 
 @clients.route('/create_request', methods=['GET', 'POST'])
+@login_required
 def create_request():
     form = CreateRequestForm()
     form.client.choices = [(client['name'], client['name']) for client in clients_data]
@@ -115,6 +123,7 @@ def create_request():
 
 
 @clients.route('/products/<client>')
+@login_required
 def products(client):
     selected_client = None
     for current_client in clients_data:
@@ -129,6 +138,7 @@ def products(client):
 
 
 @clients.route('/product_areas/<product>')
+@login_required
 def product_areas(product):
     selected_product = None
     for current_client in clients_data:
