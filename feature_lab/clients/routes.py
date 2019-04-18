@@ -61,7 +61,7 @@ request_data = {
 """ Client endpoints """
 
 
-@clients.route('/client/<client_id>')
+@clients.route('/client/<int:client_id>')
 @login_required
 def client(client_id):
     client = Client.query.get_or_404(int(client_id))
@@ -71,7 +71,7 @@ def client(client_id):
 @clients.route('/clients')
 @login_required
 def clients_list():
-    all_clients = Client.query.all()
+    all_clients = Client.query.filter_by(user_id=current_user.id)
     return render_template('clients.html', clients=all_clients)
 
 
@@ -92,6 +92,30 @@ def create_client():
         return redirect(url_for('main.home'))
     else:
         return render_template('create_client.html', form=form)
+
+
+@clients.route('/client/<int:client_id>/update', methods=['GET', 'POST'])
+@login_required
+def update_client(client_id):
+    form = CreateClientForm()
+    client = Client.query.get_or_404(client_id)
+    if request.method == 'GET':
+        # populate the form with client data
+        form.name.data = client.name
+        form.email.data = client.email
+        form.bio.data = client.bio
+        form.phone_number.data = client.phone_number
+        form.priority.data = client.priority
+        return render_template('create_client.html', form=form)
+    elif form.validate_on_submit():
+        # update clients data
+        client.name = form.name.data
+        client.email = form.email.data
+        client.bio = form.bio.data
+        client.phone_number = form.phone_number.data
+        client.priority = form.priority.data
+        db.session.commit()
+        return redirect(url_for('clients.client', client_id=client.id))
 
 
 """ Products endpoints """

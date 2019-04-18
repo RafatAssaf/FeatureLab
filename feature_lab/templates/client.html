@@ -1,7 +1,8 @@
 {% extends 'layout.html' %}
 {% block content %}
     <h1>{{client.name}}</h1>
-    <h3>Products</h3>
+    <h5>{{client.bio}}</h5>
+    <h3 class="mt-4">Products</h3>
     {% for product in client.products %}
         <div>
             <a href="/product/5" class="request-card">
@@ -18,4 +19,5 @@
         </div>
     {% endfor %}
     <button class="btn btn-outline-info" onclick="window.location='/create_product'">Add Product</button>
+    <button class="btn btn-outline-info" onclick="window.location='/client/{{client.id}}/update'">Update Client</button>
 {% endblock content %}
