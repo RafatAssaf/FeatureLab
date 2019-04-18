@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, jsonify, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from feature_lab import db
 from feature_lab.clients.forms import CreateRequestForm, CreateProductForm, CreateClientForm
 from feature_lab.models import Client, Product, FeatureRequest
@@ -84,7 +84,8 @@ def create_client():
                         form.email.data,
                         form.bio.data,
                         form.priority.data,
-                        form.phone_number.data)
+                        form.phone_number.data,
+                        current_user.id)
         db.session.add(client)
         db.session.commit()
         flash('Client {} was created successfully!'.format(form.name.data), 'success')

@@ -15,6 +15,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
+    clients = db.relationship('Client', backref='user', lazy=True)
 
     def __repr__(self):
         return "User('username': {}, id: {}, email: {})".format(self.username, self.id, self.email)
@@ -37,6 +38,7 @@ class Client(db.Model):
     phone_number = db.Column(db.String(15))
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     products = db.relationship('Product', backref='owner', lazy=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
         return "Client(name: {}, id: {}, created_at: {})".format(self.name, self.id, self.created_at)
@@ -46,12 +48,14 @@ class Client(db.Model):
                  email,
                  bio,
                  priority,
-                 phone_number):
+                 phone_number,
+                 user_id):
         self.name = name
         self.email = email
         self.bio = bio
         self.priority = priority
         self.phone_number = phone_number
+        self.user_id = user_id
 
 
 class Product(db.Model):
