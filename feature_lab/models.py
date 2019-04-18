@@ -39,7 +39,7 @@ class Client(db.Model):
     products = db.relationship('Product', backref='owner', lazy=True)
 
     def __repr__(self):
-        return "Client (name: {}, id: {}, created_at: {})".format(self.name, self.created_at, self.id)
+        return "Client(name: {}, id: {}, created_at: {})".format(self.name, self.id, self.created_at)
 
     def __init__(self,
                  name,
@@ -93,7 +93,7 @@ class FeatureRequest(db.Model):
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
 
     def __repr__(self):
-        return 'Request (title: {}, id: {})'.format(self.title, self.id)
+        return 'Request(title: {}, id: {})'.format(self.title, self.id)
 
     def __init__(self,
                  title,
