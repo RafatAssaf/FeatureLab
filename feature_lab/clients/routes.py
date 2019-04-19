@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect, url_for, jsonify, request
+from flask import Blueprint, render_template, flash, redirect, url_for, jsonify, request, abort
 from flask_login import login_required, current_user
 from feature_lab import db
 from feature_lab.clients.forms import CreateRequestForm, CreateProductForm, CreateClientForm
@@ -116,6 +116,19 @@ def update_client(client_id):
         client.priority = form.priority.data
         db.session.commit()
         return redirect(url_for('clients.client', client_id=client.id))
+
+
+@clients.route('/client/<int:client_id>/delete', methods=['POST'])
+@login_required
+def delete_client(client_id):
+    client = Client.query.get_or_404(client_id)
+    if client.user != current_user:
+        abort(403)
+    db.session.delete(client)
+    db.session.commit()
+    flash('Client has been deleted successfully', 'success')
+    return redirect(url_for('clients.clients_list'))
+
 
 
 """ Products endpoints """

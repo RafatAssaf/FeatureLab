@@ -1,23 +1,52 @@
 {% extends 'layout.html' %}
 {% block content %}
     <h1>{{client.name}}</h1>
-    <h5>{{client.bio}}</h5>
-    <h3 class="mt-4">Products</h3>
-    {% for product in client.products %}
-        <div>
-            <a href="/product/5" class="request-card">
-                <div class="card bg-light mb-3 p-3 mr-0">
-                    <div class="p-1">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text">Sample Product Description</p>
-                        {% for area in product.areas %}
-                            <span class="badge badge-info">{{ area }}</span>
-                        {% endfor %}
-                    </div>
-                </div>
-            </a>
-        </div>
-    {% endfor %}
+    <h5 class="mb-4">{{client.bio}}</h5>
     <button class="btn btn-outline-info" onclick="window.location='/create_product'">Add Product</button>
     <button class="btn btn-outline-info" onclick="window.location='/client/{{client.id}}/update'">Update Client</button>
+    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">Delete Client</button>
+    <h3 class="mt-4">Products</h3>
+    {% if client.products %}
+        {% for product in client.products %}
+            <div>
+                <a href="/product/5" class="request-card">
+                    <div class="card bg-light mb-3 p-3 mr-0">
+                        <div class="p-1">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">Sample Product Description</p>
+                            {% for area in product.areas %}
+                            <span class="badge badge-info">{{ area }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="p-5 text-secondary">
+            <p>This client does not have any products yet. <a href="/create_product">Create product.</a></p>
+        </div>
+    {% endif %}
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel">Delete Client?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Are you sure? This action cannot be undone
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <form action="{{ url_for('clients.delete_client', client_id=client.id) }}" method="post">
+                <input type="submit" class="btn btn-danger" value="Delete Client">
+            </form>
+<!--            <button type="button" class="btn btn-danger" onclick="window.location='/client/{{client.id}}/delete'">Delete Client</button>-->
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock content %}
