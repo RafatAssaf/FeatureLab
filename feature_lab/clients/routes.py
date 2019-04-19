@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, flash, redirect, url_for, jsonify,
 from flask_login import login_required, current_user
 from feature_lab import db
 from feature_lab.clients.forms import CreateRequestForm, CreateProductForm, CreateClientForm
-from feature_lab.models import Client, Product, FeatureRequest
+from feature_lab.models import Client, Product, ProductArea, FeatureRequest
 
 clients = Blueprint('clients', __name__)
 
@@ -134,24 +134,78 @@ def delete_client(client_id):
 """ Products endpoints """
 
 
-@clients.route('/product/<product_id>')
+@clients.route('/product/<int:product_id>')
 @login_required
 def product(product_id):
-    product_data = clients_data[0]['products'][0]
-    product_data['requests'] = [request_data]
+    product_data = Product.query.get_or_404(product_id)
     return render_template('product.html', product=product_data)
 
 
-@clients.route('/create_product', methods=['GET', 'POST'])
+@clients.route('/create_product/<int:client_id>', methods=['GET', 'POST'])
 @login_required
-def create_product():
+def create_product(client_id):
     form = CreateProductForm()
-    form.client.choices = [(client['name'], client['name']) for client in clients_data]  # initialize with clients
     if form.validate_on_submit():
-        flash('Product {} for client {} has been successfully created!'.format(form.name.data, form.client.data))
-        return redirect(url_for('clients.client', client_id=form.client.data))
+        new_product = Product(form.name.data,
+                              form.description.data,
+                              client_id)
+        db.session.add(new_product)
+        db.session.commit()
+        areas = form.areas.data.split(',')
+        for area in areas:
+            new_area = ProductArea(area, new_product.id)
+            db.session.add(new_area)
+        db.session.commit()
+        flash('Product {} has been successfully created!'.format(form.name.data), 'success')
+        return redirect(url_for('clients.client', client_id=client_id))
     else:
         return render_template('create_product.html', form=form)
+
+
+@clients.route('/product/<product_id>/update', methods=['GET', 'POST'])
+@login_required
+def update_product(product_id):
+    form = CreateProductForm()
+    product = Product.query.get_or_404(product_id)
+    if request.method == 'GET':
+        form.name.data = product.name
+        form.description.data = product.description
+        form.areas.data = ','.join([a.name for a in product.areas])
+        return render_template('create_product.html', form=form)
+    elif form.validate_on_submit():
+        # update product with new data
+        product.name = form.name.data
+        product.description = form.description.data
+        old_areas = ProductArea.query.filter_by(product_id=product_id).all()
+        # delete old areas
+        for area in old_areas:
+            db.session.delete(area)
+        # create new areas
+        new_areas = form.areas.data.split(',')
+        for area in new_areas:
+            new_area = ProductArea(area, product.id)
+            db.session.add(new_area)
+        # commit changes
+        db.session.commit()
+        return redirect(url_for('clients.product', product_id=product.id))
+
+
+@clients.route('/product/<int:product_id>/update', methods=['POST'])
+@login_required
+def delete_product(product_id):
+    product = Product.query.get_or_404(product_id)
+    # abort if the user is not authorized to delete the product
+    if product.owner.user != current_user:
+        abort(403)
+    # delete the product areas first
+    areas = ProductArea.query.filter_by(product_id=product_id)
+    for area in areas:
+        db.session.delete(area)
+    db.session.delete(product)
+    db.session.commit()
+    flash('Product has been successfully deleted', 'success')
+    return redirect(url_for('clients.client', client_id=product.owner.id))
+
 
 
 @clients.route('/products/<client>')

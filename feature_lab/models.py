@@ -64,6 +64,7 @@ class Product(db.Model):
     description = db.Column(db.Text(), nullable=False)
     owner_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
     requests = db.relationship('FeatureRequest', backref='product', lazy=True)
+    areas = db.relationship('ProductArea', backref='product', lazy=True)
 
     def __repr__(self):
         return 'Product(name: {}, id: {})'.format(self.name, self.id)
@@ -71,19 +72,22 @@ class Product(db.Model):
     def __init__(self,
                  name,
                  description,
-                 owner_id,
-                 areas_string):
+                 owner_id):
         self.name = name
         self.description = description
         self.owner_id = owner_id
 
-        class Areas(enum.Enum):
-            def __init__(self):
-                areas_names = areas_string.split(',')
-                for area in areas_names:
-                    self[area] = area
 
-        self.areas = db.Column(db.Enum(Areas))
+class ProductArea(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(30), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+
+    def __init__(self,
+                 name,
+                 product_id):
+        self.name = name
+        self.product_id = product_id
 
 
 class FeatureRequest(db.Model):

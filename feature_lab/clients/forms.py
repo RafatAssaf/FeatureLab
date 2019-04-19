@@ -39,8 +39,6 @@ class CreateProductForm(FlaskForm):
                        validators=[DataRequired(), Length(min=8, max=50)])
     description = TextAreaField('Description',
                                 validators=[DataRequired()])
-    client = SelectField('Client',
-                         choices=[])
     areas = StringField('Areas',
                         validators=[DataRequired()],
                         render_kw={'placeholder': 'comma separated. i.e. "Search,Profile, ... etc"'})
