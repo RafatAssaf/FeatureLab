@@ -207,36 +207,39 @@ def delete_product(product_id):
     return redirect(url_for('clients.client', client_id=product.owner.id))
 
 
-
-@clients.route('/products/<client>')
+@clients.route('/products/<client_id>')
 @login_required
-def products(client):
-    selected_client = None
-    for current_client in clients_data:
-        if current_client['name'] == client:
-            selected_client = current_client
-            break
-
-    if selected_client:
-        return jsonify({'products': selected_client['products']})
+def products(client_id):
+    clients_products = Product.query.filter_by(owner_id=client_id).all()
+    products_data = []
+    for product in clients_products:
+        products_data.append({
+            'id': product.id,
+            'name': product.name,
+            'description': product.description,
+            'owner_id': client_id
+        })
+    if products_data:
+        return jsonify({'products': products_data})
     else:
-        return jsonify({'error': 'Client no found!'})
+        return jsonify({'error': 'Client not found!'})
 
 
-@clients.route('/product_areas/<product>')
+@clients.route('/product_areas/<product_id>')
 @login_required
-def product_areas(product):
-    selected_product = None
-    for current_client in clients_data:
-        for current_product in current_client['products']:
-            if current_product['name'] == product:
-                selected_product = current_product
-                break
-
-    if selected_product:
-        return jsonify({'areas': selected_product['areas']})
+def product_areas(product_id):
+    areas = ProductArea.query.filter_by(product_id=product_id).all()
+    areas_data = []
+    for area in areas:
+        areas_data.append({
+            'id': area.id,
+            'name': area.name,
+            'product_id': product_id
+        })
+    if areas:
+        return jsonify({'areas': areas_data})
     else:
-        return {'error': 'Product Not Found'}
+        return jsonify({'error': 'Product Not Found'})
 
 
 """ Feature requests endpoints """
@@ -245,20 +248,39 @@ def product_areas(product):
 @clients.route('/request/<request_id>')
 @login_required
 def feature_request(request_id):
-    return render_template('request.html', request=request_data)
+    request = FeatureRequest.query.get_or_404(request_id)
+    return render_template('request.html', request=request)
 
 
 @clients.route('/create_request', methods=['GET', 'POST'])
 @login_required
 def create_request():
     form = CreateRequestForm()
-    form.client.choices = [(client['name'], client['name']) for client in clients_data]
-    form.product.choices = [(product['name'], product['name']) for product in clients_data[0].get('products')]
-    form.product_area.choices = [(area, area) for area in clients_data[0]['products'][0]['areas']]
-
-    if form.validate_on_submit():
+    if request.method == 'GET':
+        # query the initial data
+        clients = Client.query.filter_by(user_id=current_user.id).filter(Client.products.any()).all()
+        if not clients:  # check if we have client's to add requests to at first place
+            flash('You do not have any clients with products yet', 'info')
+            return redirect(url_for('clients.clients_list'))
+        products = Product.query.filter_by(owner_id=clients[0].id).all()
+        areas = ProductArea.query.filter_by(product_id=products[0].id).all()
+        # create the choices for the form
+        form.client.choices = [(client.id, client.name) for client in clients]
+        form.product.choices = [(product.id, product.name) for product in products]
+        form.product_area.choices = [(area.name, area.name) for area in areas]
+        return render_template('create_request.html', form=form)
+    elif form.validate_on_submit():
+        new_feature_request = FeatureRequest(form.title.data,
+                                             form.description.data,
+                                             form.created_at.data,
+                                             form.target_date.data,
+                                             form.product_area.data,
+                                             form.product.data,
+                                             form.client.data)
+        db.session.add(new_feature_request)
+        db.session.commit()
         flash('Request was created successfully!', 'success')
-        print(form.target_date.data)
         return redirect(url_for('main.home'))
     else:
-        return render_template('create_request.html', form=form)
+        flash('Something went wrong', 'danger')
+        return redirect(url_for('clients.create_request'))

@@ -20,7 +20,7 @@ class CreateRequestForm(FlaskForm):
                         validators=[DataRequired(), Length(min=8, max=50)])
     description = TextAreaField('Description',
                                 validators=[DataRequired()])
-    client = SelectField('Client',
+    client = NoValidationSelectField('Client',
                          choices=[])
     product = NoValidationSelectField('Product',
                                       choices=[])

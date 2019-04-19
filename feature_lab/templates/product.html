@@ -8,15 +8,12 @@
     <h3 class="mt-4">Product Feature Requests</h3>
     {% for request in product.requests %}
         <div>
-            <a href="/request/5" class="request-card">
+            <a href="/request/{{request.id}}" class="request-card">
                 <div class="card bg-light mb-3 p-3 mr-0">
                     <div class="p-1">
                         <h5 class="card-title">{{ request.title }}</h5>
                         <p class="card-text">{{ request.description }}</p>
-                        <span class="badge badge-info">{{ request.product }}</span>
-                    </div>
-                    <div class="p-1 border-0 row">
-                        <span class="card-text col">{{ request.client }}</span>
+                        <span class="badge badge-info">{{ request.product.name }}</span>
                     </div>
                 </div>
             </a>

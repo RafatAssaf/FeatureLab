@@ -113,8 +113,8 @@ class FeatureRequest(db.Model):
                  client_id):
         self.title = title
         self.description = description
-        self.created_at = datetime.strptime(created_at, '%Y-%m-%d')
-        self.target_date = datetime.strptime(target_date, '%Y-%m-%d')
+        self.created_at = created_at
+        self.target_date = target_date
         self.product_area = product_area
         self.product_id = product_id
         self.client_id = client_id
