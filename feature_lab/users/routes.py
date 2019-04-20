@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect, url_for
+from flask import Blueprint, render_template, flash, redirect, url_for, request
 from feature_lab.users.forms import LoginForm, SignupForm
 from feature_lab import bcrypt, db
 from feature_lab.models import User, Client, Product, FeatureRequest, FeatureRequestState
@@ -72,6 +72,18 @@ def profile():
     return render_template('profile.html', user=current_user, profile_stats=profile_stats)
 
 
-# @users.route('/profile/update'):
-# def update_profile():
-#     form = SignupForm()
+@users.route('/profile/update', methods=['GET', 'POST'])
+def update_profile():
+    form = SignupForm()
+    if request.method == 'GET':
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        current_user.password = hashed_password
+        db.session.commit()
+        flash('Your account has been updated successfully', 'success')
+        return redirect(url_for('users.profile'))
+    return render_template('signup.html', form=form, hide_signup_option=True)
