@@ -24,11 +24,29 @@
                 <th scope="row">Product Area</th>
                 <td>{{request.product_area}}</td>
             </tr>
+            <tr>
+                <th scope="row">Request State</th>
+                <td>{{request.state.value}}</td>
+            </tr>
         </tbody>
     </table>
-    <button class="btn btn-outline-info">Mark As Done</button>
-    <button class="btn btn-outline-info" onclick="window.location='/request/{{request.id}}/update'">Edit</button>
-   <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">Delete Feature Request</button>
+
+    <div class="mb-3 pb-3 border-bottom">
+        <h6>Request state</h6>
+        {% for state in request_states %}
+        <div class="form-check-inline">
+            <input class="form-check-input" type="radio" name="stateRadios" id="{{state.value.lower().replace(' ', '-')}}"
+                   value="{{state.name}}" onclick="handleStateChange('{{state.name}}', {{request.id}})"
+                   {% if request.state.name == state.name%} checked {% endif %}>
+            <label class="form-check-label" for="exampleRadios1">
+                {{state.value}}
+            </label>
+        </div>
+        {% endfor %}
+    </div>
+
+    <button class="btn btn-outline-info" onclick="window.location='/request/{{request.id}}/update'">Edit Request</button>
+    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">Delete Request</button>
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -50,4 +68,5 @@
         </div>
       </div>
     </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='stateChange.js') }}"></script>
 {% endblock content %}

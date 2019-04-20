@@ -90,6 +90,13 @@ class ProductArea(db.Model):
         self.product_id = product_id
 
 
+class FeatureRequestState(enum.Enum):
+    TODO = 'To-Do'
+    IN_PROGRESS = 'In Progress'
+    AWAITING_QA = 'Awaiting QA'
+    RESOLVED = 'Resolved'
+
+
 class FeatureRequest(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(30), unique=True, nullable=False)
@@ -99,6 +106,7 @@ class FeatureRequest(db.Model):
     product_area = db.Column(db.String())
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
+    state = db.Column(db.Enum(FeatureRequestState), default=FeatureRequestState.TODO)
 
     def __repr__(self):
         return 'Request(title: {}, id: {})'.format(self.title, self.id)

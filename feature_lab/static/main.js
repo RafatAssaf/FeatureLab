@@ -2,6 +2,7 @@ let client_input = document.getElementById('client')
 let product_input = document.getElementById('product')
 let product_area_input = document.getElementById('product_area')
 
+
 // handle client input change
 client_input.onchange = function() {
     $.ajax({ // fetch the products of the selected client
@@ -41,3 +42,4 @@ let update_areas = function(product) {
 product_input.onchange = function() {
     update_areas(product_input.value)
 }
+

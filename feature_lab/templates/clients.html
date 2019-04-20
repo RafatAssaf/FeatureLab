@@ -1,29 +1,35 @@
 {% extends 'layout.html' %}
 {% block content %}
     <h2 class="mb-3">Your Clients</h2>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Created At</th>
-            <th scope="col">Priority</th>
-            <th scope="col">Phone Number</th>
-            <th scope="col">Products</th>
-        </tr>
-      </thead>
-        <tbody>
-        {% for client in clients %}
+    {% if clients %}
+        <table class="table table-striped">
+          <thead>
             <tr>
-                <th scope="row">{{client.name}}</th>
-                <td>{{client.email}}</td>
-                <td>{{client.created_at.strftime('%Y-%m-%d')}}</td>
-                <td>{{client.priority}}</td>
-                <td>{{client.phone_number}}</td>
-                <td><a href="/client/{{client.id}}">View Client Page</a></td>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Created At</th>
+                <th scope="col">Priority</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Products</th>
             </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+          </thead>
+            <tbody>
+            {% for client in clients %}
+                <tr>
+                    <th scope="row">{{client.name}}</th>
+                    <td>{{client.email}}</td>
+                    <td>{{client.created_at.strftime('%Y-%m-%d')}}</td>
+                    <td>{{client.priority}}</td>
+                    <td>{{client.phone_number}}</td>
+                    <td><a href="/client/{{client.id}}">View Client Page</a></td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    {% else %}
+        <div class="container">
+            <p class="text-secondary mb-4">You don't have any clients yet.</p>
+        </div>
+    {% endif %}
     <button type="button" class="btn btn-outline-info" onclick="window.location='/create_client'">Add New Client</button>
 {% endblock content %}

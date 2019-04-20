@@ -2,50 +2,9 @@ from flask import Blueprint, render_template, flash, redirect, url_for, jsonify,
 from flask_login import login_required, current_user
 from feature_lab import db
 from feature_lab.clients.forms import CreateRequestForm, CreateProductForm, CreateClientForm
-from feature_lab.models import Client, Product, ProductArea, FeatureRequest
+from feature_lab.models import Client, Product, ProductArea, FeatureRequest, FeatureRequestState
 
 clients = Blueprint('clients', __name__)
-
-clients_data = [
-    {
-        'name': 'CompanyX',
-        'products': [
-            {
-                'name': 'Prod-A',
-                'description': 'some testing description to display on the page',
-                'areas': ['Search', 'User Account']
-            },
-            {
-                'name': 'Prod-B',
-                'description': 'some testing description to display on the page',
-                'areas': ['Map']
-            }
-        ],
-        'email': 'companyx@example.com',
-        'phone_number': '+1 293 987 872',
-        'created_at': '2017-09-10',
-        'priority': 1
-    },
-    {
-        'name': 'CompanyY',
-        'products': [
-            {
-                'name': 'Prod-C',
-                'description': 'some testing description to display on the page',
-                'areas': ['Landing', 'Notification']
-            },
-            {
-                'name': 'Prod-D',
-                'description': 'some testing description to display on the page',
-                'areas': ['Onboarding']
-            }
-        ],
-        'email': 'companyy@example.com',
-        'phone_number': '+1 123 987 456',
-        'created_at': '2015-05-10',
-        'priority': 2
-    }
-]
 
 
 """ Client endpoints """
@@ -61,7 +20,7 @@ def client(client_id):
 @clients.route('/clients')
 @login_required
 def clients_list():
-    all_clients = Client.query.filter_by(user_id=current_user.id)
+    all_clients = Client.query.filter_by(user_id=current_user.id).all()
     return render_template('clients.html', clients=all_clients)
 
 
@@ -239,7 +198,8 @@ def product_areas(product_id):
 @login_required
 def feature_request(request_id):
     request = FeatureRequest.query.get_or_404(request_id)
-    return render_template('request.html', request=request)
+    request_states = list(map(lambda s: s, FeatureRequestState))
+    return render_template('request.html', request=request, request_states=request_states)
 
 
 @clients.route('/create_request', methods=['GET', 'POST'])
@@ -329,3 +289,13 @@ def delete_request(request_id):
     db.session.commit()
     flash('Product has been successfully deleted', 'success')
     return redirect(url_for('clients.client', client_id=request_data.client_id))
+
+
+@clients.route('/request/<int:request_id>/update_state', methods=['POST'])
+def update_request_state(request_id):
+    request_data = FeatureRequest.query.get_or_404(request_id)
+    next_state = request.get_json().get('state')
+    request_data.state = FeatureRequestState[next_state]
+    db.session.commit()
+    flash('Request state successfully updated to {}'.format(FeatureRequestState[next_state].value), 'success')
+    return redirect(url_for('clients.feature_request', request_id=request_id))

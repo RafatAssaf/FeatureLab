@@ -1,106 +1,8 @@
 from flask import Blueprint, render_template, redirect, url_for
 from flask_login import current_user
+from feature_lab.models import FeatureRequest, Client
 
 main = Blueprint('main', __name__)
-
-mock_requests = [
-    {
-        'title': 'Request# 1',
-        'description': 'This feature should be accomplished',
-        'client': {
-            'name': 'CompanyX',
-        },
-        'priority': 2,
-        'deadline': '2019-06-15',
-        'product': {
-            'name': 'Authentication'
-        }
-    },
-    {
-        'title': 'Request# 2',
-        'description': 'This feature should be accomplished. This feature should be accomplished',
-        'client': {
-            'name': 'CompanyY',
-        },
-        'priority': 1,
-        'deadline': '2019-10-15',
-        'product': {
-            'name': 'Search'
-        }
-    },
-    {
-        'title': 'Request# 3',
-        'description': 'This feature',
-        'client': {
-            'name': 'CompanyZ',
-        },
-        'priority': 2,
-        'deadline': '2019-06-15',
-        'product': {
-            'name': 'Main'
-        }
-    },
-    {
-        'title': 'Request# 4',
-        'description': 'Adding Elastic search',
-        'client': {
-            'name': 'CompanyA',
-        },
-        'priority': 5,
-        'deadline': '2019-04-15',
-        'product': {
-            'name': 'Search'
-        }
-    },
-    {
-        'title': 'Request# 1',
-        'description': 'This feature should be accomplished',
-        'client': {
-            'name': 'CompanyX',
-        },
-        'priority': 1,
-        'deadline': '2019-06-15',
-        'product': {
-            'name': 'Authentication'
-        }
-    },
-    {
-        'title': 'Request# 2',
-        'description': 'This feature should be accomplished. This feature should be accomplished',
-        'client': {
-            'name': 'CompanyY',
-        },
-        'priority': 3,
-        'deadline': '2019-10-15',
-        'product': {
-            'name': 'Search'
-        }
-    },
-    {
-        'title': 'Request# 3',
-        'description': 'This feature',
-        'client': {
-            'name': 'CompanyZ',
-        },
-        'priority': 4,
-        'deadline': '2019-06-15',
-        'product': {
-            'name': 'Main'
-        }
-    },
-    {
-        'title': 'Request# 4',
-        'description': 'Adding Elastic search',
-        'client': {
-            'name': 'CompanyA',
-        },
-        'priority': 3,
-        'deadline': '2019-04-15',
-        'product': {
-            'name': 'Search'
-        }
-    },
-]
 
 
 @main.route('/')
@@ -108,7 +10,12 @@ mock_requests = [
 def home():
     if not current_user.is_authenticated:
         return redirect(url_for('users.login'))
-    return render_template('home.html', requests=mock_requests, title='Home')
+    user_clients = Client.query.filter_by(user_id=current_user.id).all()
+    requests = []
+    for client in user_clients:
+        client_requests = FeatureRequest.query.filter_by(client_id=client.id).all()
+        requests += client_requests
+    return render_template('home.html', requests=requests, title='Home')
 
 
 @main.route('/about')

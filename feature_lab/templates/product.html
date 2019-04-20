@@ -6,19 +6,26 @@
     <button class="btn btn-outline-info" onclick="window.location='/product/{{product.id}}/update'">Update Product</button>
     <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">Delete Product</button>
     <h3 class="mt-4">Product Feature Requests</h3>
-    {% for request in product.requests %}
-        <div>
-            <a href="/request/{{request.id}}" class="request-card">
-                <div class="card bg-light mb-3 p-3 mr-0">
-                    <div class="p-1">
-                        <h5 class="card-title">{{ request.title }}</h5>
-                        <p class="card-text">{{ request.description }}</p>
-                        <span class="badge badge-info">{{ request.product.name }}</span>
+    {% if product.requests %}
+        {% for request in product.requests %}
+            <div>
+                <a href="/request/{{request.id}}" class="request-card">
+                    <div class="card bg-light mb-3 p-3 mr-0">
+                        <div class="p-1">
+                            <h5 class="card-title">{{ request.title }}</h5>
+                            <p class="card-text">{{ request.description }}</p>
+                            <span class="badge badge-secondary p-2">{{ request.state.value }}</span>
+                            <span class="badge badge-info p-2">{{ request.product.name }}</span>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="container">
+            <p class="text-secondary m-4">This product does not have any feature requests yet. <a href="{{url_for('clients.create_request')}}">Create feature request</a></p>
         </div>
-    {% endfor %}
+    {% endif %}
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
