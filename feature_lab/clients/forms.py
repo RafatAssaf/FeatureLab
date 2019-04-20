@@ -55,6 +55,6 @@ class CreateClientForm(FlaskForm):
     phone_number = IntegerField('Phone Number',
                                 widget=NumberInput(min=0),
                                 validators=[DataRequired()])
-    priority = IntegerField('Priority', widget=NumberInput(min=0),
+    priority = IntegerField('Priority', widget=NumberInput(min=1),
                             validators=[DataRequired()])
     submit = SubmitField('Create')

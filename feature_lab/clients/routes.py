@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from feature_lab import db
 from feature_lab.clients.forms import CreateRequestForm, CreateProductForm, CreateClientForm
 from feature_lab.models import Client, Product, ProductArea, FeatureRequest, FeatureRequestState
+from sqlalchemy import desc
 
 clients = Blueprint('clients', __name__)
 
@@ -29,13 +30,20 @@ def clients_list():
 def create_client():
     form = CreateClientForm()
     if form.validate_on_submit():
-        client = Client(form.name.data,
-                        form.email.data,
-                        form.bio.data,
-                        form.priority.data,
-                        form.phone_number.data,
-                        current_user.id)
-        db.session.add(client)
+        user_clients = Client.query.filter_by(user_id=current_user.id).order_by(Client.priority)
+        # compare the new client's priority with the existing clients' priorities
+        if form.priority.data > user_clients[-1].priority:
+            form.priority.data = user_clients[-1].priority + 1  # to avoid missing orders
+        else:  # else we have to reorder
+            for client in user_clients[form.priority.data - 1:]:
+                client.priority += 1
+        new_client = Client(form.name.data,
+                            form.email.data,
+                            form.bio.data,
+                            form.priority.data,
+                            form.phone_number.data,
+                            current_user.id)
+        db.session.add(new_client)
         db.session.commit()
         flash('Client {} was created successfully!'.format(form.name.data), 'success')
         return redirect(url_for('main.home'))
