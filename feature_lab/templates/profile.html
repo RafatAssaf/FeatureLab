@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <h1>{{user.username}}</h1>
+    <h6>{{user.email}}</h6>
+    <button class="btn btn-outline-info mt-3" onclick="window.location='/create_client'">Add Client</button>
+    <button class="btn btn-outline-info mt-3" onclick="window.location='/'">Update Profile</button>
+    {% if profile_stats %}
+        <h2 class="mt-4 mb-4 border-bottom pd-3">Clients Statistics</h2>
+        {% for client in profile_stats %}
+            <h5>{{ client.name }}</h5>
+            {% if client.products %}
+                <table class="table table-striped border mb-5">
+                  <thead>
+                    <tr>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Num. open requests</th>
+                        <th scope="col">Num. resolved requests</th>
+                        <th scope="col">% Done</th>
+                    </tr>
+                  </thead>
+                    <tbody>
+                    {% for product in client.products %}
+                        <tr>
+                            <th scope="row">{{product.name}}</th>
+                            <td>{{product.num_open}}</td>
+                            <td>{{product.num_resolved}}</td>
+                            <td>%{{product.ratio_done * 100}}</td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+            {% else %}
+                <div class="container">
+                    <p class="text-secondary">This client has no products</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <div class="container">
+            <p class="text-secondary mb-4">You don't have any clients yet.</p>
+        </div>
+    {% endif %}
+{% endblock content %}

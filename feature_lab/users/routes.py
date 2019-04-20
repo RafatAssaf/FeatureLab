@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, flash, redirect, url_for
 from feature_lab.users.forms import LoginForm, SignupForm
 from feature_lab import bcrypt, db
-from feature_lab.models import User
+from feature_lab.models import User, Client, Product, FeatureRequest, FeatureRequestState
 from flask_login import login_user, current_user, logout_user
 users = Blueprint('users', __name__)
 
@@ -43,3 +43,35 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('users.login'))
+
+
+@users.route('/profile')
+def profile():
+    # list of statistics for each client
+    profile_stats = []
+    user_clients = Client.query.filter_by(user_id=current_user.id)
+    for client in user_clients:
+        client_data = {
+            'name': client.name,
+            'products': []
+        }
+        for product in client.products:
+            num_resolved = FeatureRequest.query\
+                .filter_by(state=FeatureRequestState.RESOLVED, product_id=product.id).count()
+            num_open = FeatureRequest.query\
+                .filter_by(product_id=product.id).filter(FeatureRequest.state != FeatureRequestState.RESOLVED).count()
+            num_all = FeatureRequest.query.filter_by(product_id=product.id).count()
+            ratio_done = num_resolved / num_all if num_all > 0 else 0
+            client_data['products'].append({
+                'name': product.name,
+                'num_resolved': num_resolved,
+                'num_open': num_open,
+                'ratio_done': ratio_done
+            })
+        profile_stats.append(client_data)
+    return render_template('profile.html', user=current_user, profile_stats=profile_stats)
+
+
+# @users.route('/profile/update'):
+# def update_profile():
+#     form = SignupForm()
