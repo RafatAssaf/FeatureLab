@@ -194,7 +194,7 @@ def delete_product(product_id):
     db.session.delete(product)
     db.session.commit()
     flash('Product has been successfully deleted', 'success')
-    return redirect(url_for('clients.client', client_id=product.owner.id))
+    return redirect(url_for('clients.client', client_id=current_user.id))
 
 
 @clients.route('/products/<client_id>')
@@ -247,14 +247,14 @@ def feature_request(request_id):
 def create_request():
     form = CreateRequestForm()
     if request.method == 'GET':
-        # query the initial data
+        # query select fields data
         clients = Client.query.filter_by(user_id=current_user.id).filter(Client.products.any()).all()
         if not clients:  # check if we have client's to add requests to at first place
             flash('You do not have any clients with products yet', 'info')
             return redirect(url_for('clients.clients_list'))
         products = Product.query.filter_by(owner_id=clients[0].id).all()
         areas = ProductArea.query.filter_by(product_id=products[0].id).all()
-        # create the choices for the form
+        # create the choices for select fields
         form.client.choices = [(client.id, client.name) for client in clients]
         form.product.choices = [(product.id, product.name) for product in products]
         form.product_area.choices = [(area.name, area.name) for area in areas]
@@ -316,3 +316,16 @@ def update_request(request_id):
     else:
         flash('Something went wrong', 'danger')
         return redirect(url_for('clients.update_request', request_id=request_id))
+
+
+@clients.route('/request/<int:request_id>/delete', methods=['POST'])
+@login_required
+def delete_request(request_id):
+    request_data = FeatureRequest.query.get_or_404(request_id)
+    # abort if the user is not authorized to delete the product
+    if request_data.product.owner.user != current_user:
+        abort(403)
+    db.session.delete(request_data)
+    db.session.commit()
+    flash('Product has been successfully deleted', 'success')
+    return redirect(url_for('clients.client', client_id=request_data.client_id))

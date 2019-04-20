@@ -3,8 +3,8 @@
     <h1>{{product.name}}</h1>
     <h6>{{product.description}}</h6>
     <h6 class="mb-4">Owner: CompanyX</h6>
-    <button class="btn btn-outline-info" onclick="window.location='/product/{{product.id}}/update'">Update Client</button>
-    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">Delete Client</button>
+    <button class="btn btn-outline-info" onclick="window.location='/product/{{product.id}}/update'">Update Product</button>
+    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">Delete Product</button>
     <h3 class="mt-4">Product Feature Requests</h3>
     {% for request in product.requests %}
         <div>

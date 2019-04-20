@@ -28,5 +28,26 @@
     </table>
     <button class="btn btn-outline-info">Mark As Done</button>
     <button class="btn btn-outline-info" onclick="window.location='/request/{{request.id}}/update'">Edit</button>
-    <button class="btn btn-outline-danger">Delete</button>
+   <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">Delete Feature Request</button>
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel">Delete Feature Request?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Are you sure? This action cannot be undone
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <form action="{{ url_for('clients.delete_request', request_id=request.id) }}" method="post">
+                <input type="submit" class="btn btn-danger" value="Delete">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock content %}
