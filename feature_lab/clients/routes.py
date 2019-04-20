@@ -47,16 +47,6 @@ clients_data = [
     }
 ]
 
-request_data = {
-    'title': 'Adding auto complete',
-    'description': 'Adding auto complete functionality to search pages',
-    'client': 'CompanyX',
-    'product': 'Prod-A',
-    'product_area': 'Search',
-    'target_date': '2019-15-8',
-    'created_at': '2019-12-4'
-}
-
 
 """ Client endpoints """
 
@@ -245,7 +235,7 @@ def product_areas(product_id):
 """ Feature requests endpoints """
 
 
-@clients.route('/request/<request_id>')
+@clients.route('/request/<int:request_id>')
 @login_required
 def feature_request(request_id):
     request = FeatureRequest.query.get_or_404(request_id)
@@ -284,3 +274,45 @@ def create_request():
     else:
         flash('Something went wrong', 'danger')
         return redirect(url_for('clients.create_request'))
+
+
+@clients.route('/request/<int:request_id>/update', methods=['GET', 'POST'])
+@login_required
+def update_request(request_id):
+    request_data = FeatureRequest.query.get_or_404(request_id)
+    # creating the form and passing the default values for client,product,product_area
+    form = CreateRequestForm(client=request_data.client_id,
+                             product=request_data.product_id,
+                             product_area=request_data.product_area)
+    if request.method == 'GET':
+        # fetching the choices data for select fields
+        clients = Client.query.filter_by(user_id=current_user.id).filter(Client.products.any()).all()
+        products = Product.query.filter_by(owner_id=request_data.client_id).all()
+        areas = ProductArea.query.filter_by(product_id=request_data.product_id).all()
+
+        # create and assign the choices for their corresponding fields
+        form.client.choices = [(client.id, client.name) for client in clients]
+        form.product.choices = [(product.id, product.name) for product in products]
+        form.product_area.choices = [(area.name, area.name) for area in areas]
+
+        # populate the rest of the form with request data
+        form.title.data = request_data.title
+        form.description.data = request_data.description
+        form.created_at.data = request_data.created_at
+        form.target_date.data = request_data.target_date
+        return render_template('create_request.html', form=form)
+    elif form.validate_on_submit():
+        # update request data with form data and commit the changes to the database
+        request_data.title = form.title.data
+        request_data.description = form.description.data
+        request_data.created_at = form.created_at.data
+        request_data.target_date = form.target_date.data
+        request_data.client_id = form.client.data
+        request_data.product_id = form.product.data
+        request_data.product_area = form.product_area.data
+        db.session.commit()
+        flash('Feature request has been updated successfully', 'success')
+        return redirect(url_for('clients.feature_request', request_id=request_id))
+    else:
+        flash('Something went wrong', 'danger')
+        return redirect(url_for('clients.update_request', request_id=request_id))

@@ -6,11 +6,11 @@
         <tbody>
             <tr>
                 <th scope="row">Creation Date</th>
-                <td>{{request.created_at}}</td>
+                <td>{{request.created_at.strftime('%Y-%b-%d')}}</td>
             </tr>
             <tr>
                 <th scope="row">Target Date</th>
-                <td>{{request.target_date}}</td>
+                <td>{{request.target_date.strftime('%Y-%b-%d')}}</td>
             </tr>
             <tr>
                 <th scope="row">Client</th>
@@ -26,7 +26,7 @@
             </tr>
         </tbody>
     </table>
-    <button class="btn btn-info">Mark As Done</button>
-    <button class="btn btn-info">Edit</button>
-    <button class="btn btn-danger">Delete</button>
+    <button class="btn btn-outline-info">Mark As Done</button>
+    <button class="btn btn-outline-info" onclick="window.location='/request/{{request.id}}/update'">Edit</button>
+    <button class="btn btn-outline-danger">Delete</button>
 {% endblock content %}
