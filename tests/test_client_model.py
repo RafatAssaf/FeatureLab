@@ -5,7 +5,7 @@ from feature_lab.models import User, Client
 from sqlalchemy.exc import IntegrityError
 
 
-class UserModelTestCase(unittest.TestCase):
+class ClientModelTestCase(unittest.TestCase):
 
     def setUp(self):
         self.app = create_app()

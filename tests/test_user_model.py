@@ -1,7 +1,7 @@
 import unittest
 from flask_bcrypt import Bcrypt
 from feature_lab import create_app, db
-from feature_lab.models import User
+from feature_lab.models import User, Client
 from sqlalchemy.exc import IntegrityError
 
 
@@ -98,3 +98,4 @@ class UserModelTestCase(unittest.TestCase):
         db.session.commit()
         q_u = User.query.get(u.id)
         self.assertListEqual(q_u.clients, [])
+        self.assertTrue(Client.query.filter_by(user_id=q_u.id).count() == 0)

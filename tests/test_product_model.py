@@ -1,11 +1,11 @@
 import unittest
 from flask_bcrypt import Bcrypt
 from feature_lab import create_app, db
-from feature_lab.models import User, Client, Product
+from feature_lab.models import User, Client, Product, FeatureRequest
 from sqlalchemy.exc import IntegrityError
 
 
-class UserModelTestCase(unittest.TestCase):
+class ProductModelTestCase(unittest.TestCase):
     def setUp(self):
         self.app = create_app()
         self.app_context = self.app.app_context()
@@ -38,3 +38,37 @@ class UserModelTestCase(unittest.TestCase):
         self.assertEqual(q_p.name, p.name)
         self.assertEqual(q_p.description, p.description)
         self.assertEqual(q_p.owner_id, p.owner_id)
+
+    def test_name_null(self):
+        p = Product(None,
+                    'Product Description',
+                    self.test_client.id)
+        db.session.add(p)
+        with self.assertRaises(IntegrityError):
+            db.session.commit()
+
+    def test_description_null(self):
+        p = Product('Prod-X',
+                    None,
+                    self.test_client.id)
+        db.session.add(p)
+        with self.assertRaises(IntegrityError):
+            db.session.commit()
+
+    def test_client_id_null(self):
+        p = Product('Prod-X',
+                    'Product Description',
+                    None)
+        db.session.add(p)
+        with self.assertRaises(IntegrityError):
+            db.session.commit()
+
+    def test_product_requests(self):
+        p = Product('Prod-X',
+                    'Product Description',
+                    self.test_client.id)
+        db.session.add(p)
+        db.session.commit()
+        q_p = Product.query.get(p.id)
+        self.assertListEqual(q_p.requests, [])
+        self.assertTrue(FeatureRequest.query.filter_by(product_id=q_p.id).count() == 0)
