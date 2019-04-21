@@ -35,7 +35,7 @@ class Client(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     bio = db.Column(db.Text(), nullable=False)
     priority = db.Column(db.Integer, nullable=False, unique=True)
-    phone_number = db.Column(db.String(13))
+    phone_number = db.Column(db.String())
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     products = db.relationship('Product', backref='owner', lazy=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)

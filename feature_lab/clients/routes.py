@@ -30,9 +30,11 @@ def clients_list():
 def create_client():
     form = CreateClientForm()
     if form.validate_on_submit():
-        user_clients = Client.query.filter_by(user_id=current_user.id).order_by(Client.priority)
+        user_clients = Client.query.filter_by(user_id=current_user.id).order_by(Client.priority).all()
         # compare the new client's priority with the existing clients' priorities
-        if form.priority.data > user_clients[-1].priority:
+        if not user_clients:
+            form.priority.data = 1  # ensure the first client has priority 1
+        elif form.priority.data > user_clients[-1].priority:
             form.priority.data = user_clients[-1].priority + 1  # to avoid missing orders
         else:  # else we have to reorder
             for client in user_clients[form.priority.data - 1:]:

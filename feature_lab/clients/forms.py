@@ -6,6 +6,7 @@ from wtforms.widgets.html5 import NumberInput
 from datetime import date
 
 
+
 class NoValidationSelectField(SelectField):
     """
         Create a version of that do not pre-validate the options
@@ -53,7 +54,7 @@ class CreateClientForm(FlaskForm):
     email = EmailField('Email',
                        validators=[DataRequired(), Email()])
     phone_number = IntegerField('Phone Number',
-                                widget=NumberInput(min=8, max=13),
+                                widget=NumberInput(),
                                 validators=[DataRequired()])
     priority = IntegerField('Priority', widget=NumberInput(min=1),
                             validators=[DataRequired()])
