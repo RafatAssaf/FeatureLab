@@ -302,6 +302,7 @@ def delete_request(request_id):
 
 
 @clients.route('/request/<int:request_id>/update_state', methods=['POST'])
+@login_required
 def update_request_state(request_id):
     request_data = FeatureRequest.query.get_or_404(request_id)
     next_state = request.get_json().get('state')

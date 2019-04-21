@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a57f3a1-5c24-4c74-a711-9ea992d6bfc2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/test_auth_views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feature_lab/clients/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/feature_lab/clients/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/feature_lab/clients/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/feature_lab/clients/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feature_lab/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/feature_lab/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/feature_lab/site.db" beforeDir="false" afterPath="$PROJECT_DIR$/feature_lab/site.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feature_lab/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/feature_lab/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feature_lab/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/feature_lab/templates/login.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,36 +19,24 @@
     <favorites_list name="featureLab" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_user_model.py">
+        <entry file="file://$PROJECT_DIR$/feature_lab/clients/routes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" selection-start-line="11" selection-end-line="22" selection-end-column="30" />
+            <state relative-caret-position="292">
+              <caret line="302" lean-forward="true" selection-start-line="302" selection-end-line="302" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_auth_views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="41" column="44" lean-forward="true" selection-start-line="41" selection-start-column="44" selection-end-line="41" selection-end-column="44" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#0#95#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/feature_lab/templates/login.html">
+        <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="66" />
+            <state relative-caret-position="399">
+              <caret line="21" column="17" lean-forward="true" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -97,7 +85,6 @@
         <option value="$PROJECT_DIR$/feature_lab/static/custom.css" />
         <option value="$PROJECT_DIR$/feature_lab/templates/about.html" />
         <option value="$PROJECT_DIR$/feature_lab/config.py" />
-        <option value="$PROJECT_DIR$/feature_lab/templates/login.html" />
         <option value="$PROJECT_DIR$/feature_lab/users/forms.py" />
         <option value="$PROJECT_DIR$/feature_lab/templates/create_client.html" />
         <option value="$PROJECT_DIR$/feature_lab/__init__.py" />
@@ -109,7 +96,6 @@
         <option value="$PROJECT_DIR$/feature_lab/templates/clients.html" />
         <option value="$PROJECT_DIR$/feature_lab/templates/product.html" />
         <option value="$PROJECT_DIR$/feature_lab/main/routes.py" />
-        <option value="$PROJECT_DIR$/feature_lab/templates/home.html" />
         <option value="$PROJECT_DIR$/feature_lab/static/main.js" />
         <option value="$PROJECT_DIR$/feature_lab/templates/request.html" />
         <option value="$PROJECT_DIR$/feature_lab/static/stateChange.js" />
@@ -124,10 +110,13 @@
         <option value="$PROJECT_DIR$/tests/test_feature_request_model.py" />
         <option value="$PROJECT_DIR$/tests/test_user_model.py" />
         <option value="$PROJECT_DIR$/feature_lab/models.py" />
-        <option value="$PROJECT_DIR$/feature_lab/clients/routes.py" />
         <option value="$PROJECT_DIR$/feature_lab/clients/forms.py" />
         <option value="$PROJECT_DIR$/tests/test_views.py" />
         <option value="$PROJECT_DIR$/tests/test_auth_views.py" />
+        <option value="$PROJECT_DIR$/feature_lab/templates/login.html" />
+        <option value="$PROJECT_DIR$/feature_lab/templates/home.html" />
+        <option value="$PROJECT_DIR$/feature_lab/clients/routes.py" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
       </list>
     </option>
   </component>
@@ -151,22 +140,6 @@
             <path>
               <item name="featureLab" type="b2602c69:ProjectViewProjectNode" />
               <item name="featureLab" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="featureLab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="featureLab" type="462c0819:PsiDirectoryNode" />
-              <item name="feature_lab" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="featureLab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="featureLab" type="462c0819:PsiDirectoryNode" />
-              <item name="feature_lab" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="featureLab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="featureLab" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -195,7 +168,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for test_auth_views.ViewsTestCase.test_signup">
+  <component name="RunManager" selected="Python tests.Unittests for test_auth_views.ViewsTestCase.test_login">
     <configuration name="Unittests for test_auth_views.ViewsTestCase" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="featureLab" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -210,6 +183,20 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="Unittests for test_auth_views.ViewsTestCase.test_login" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="featureLab" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_auth_views.ViewsTestCase.test_login&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="Unittests for test_auth_views.ViewsTestCase.test_signup" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="featureLab" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -221,20 +208,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_auth_views.ViewsTestCase.test_signup&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests for test_feature_request_model.FeatureRequestModelTestCase.test_requests_relationships" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="featureLab" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_feature_request_model.FeatureRequestModelTestCase.test_requests_relationships&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -268,11 +241,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Unittests for test_auth_views.ViewsTestCase.test_login" />
         <item itemvalue="Python tests.Unittests for test_auth_views.ViewsTestCase.test_signup" />
         <item itemvalue="Python tests.Unittests for test_auth_views.ViewsTestCase" />
         <item itemvalue="Python tests.Unittests for tests.test_auth_views.ViewsTestCase.test_login" />
         <item itemvalue="Python tests.Unittests for test_user_model.UserModelTestCase" />
-        <item itemvalue="Python tests.Unittests for test_feature_request_model.FeatureRequestModelTestCase.test_requests_relationships" />
       </list>
     </recent_temporary>
   </component>
@@ -290,35 +263,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_test_auth_views_ViewsTestCase - 2019.04.21 at 18h 14m 55s.xml">
-      <configuration name="Unittests for test_auth_views.ViewsTestCase" configurationId="tests" />
+    <history-entry file="Unittests_for_test_auth_views_ViewsTestCase_test_login - 2019.04.21 at 18h 48m 41s.xml">
+      <configuration name="Unittests for test_auth_views.ViewsTestCase.test_login" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_auth_views_ViewsTestCase_test_signup - 2019.04.21 at 18h 15m 44s.xml">
+    <history-entry file="Unittests_for_test_auth_views_ViewsTestCase_test_login - 2019.04.21 at 18h 50m 40s.xml">
+      <configuration name="Unittests for test_auth_views.ViewsTestCase.test_login" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_test_auth_views_ViewsTestCase_test_login - 2019.04.21 at 18h 51m 52s.xml">
+      <configuration name="Unittests for test_auth_views.ViewsTestCase.test_login" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_test_auth_views_ViewsTestCase_test_signup - 2019.04.21 at 18h 52m 02s.xml">
       <configuration name="Unittests for test_auth_views.ViewsTestCase.test_signup" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_auth_views_ViewsTestCase_test_signup - 2019.04.21 at 18h 17m 25s.xml">
-      <configuration name="Unittests for test_auth_views.ViewsTestCase.test_signup" configurationId="tests" />
+    <history-entry file="Unittests_for_test_auth_views_ViewsTestCase_test_login - 2019.04.21 at 18h 53m 05s.xml">
+      <configuration name="Unittests for test_auth_views.ViewsTestCase.test_login" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_auth_views_ViewsTestCase_test_signup - 2019.04.21 at 18h 17m 46s.xml">
-      <configuration name="Unittests for test_auth_views.ViewsTestCase.test_signup" configurationId="tests" />
+    <history-entry file="Unittests_for_test_auth_views_ViewsTestCase_test_login - 2019.04.21 at 18h 53m 32s.xml">
+      <configuration name="Unittests for test_auth_views.ViewsTestCase.test_login" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_auth_views_ViewsTestCase_test_signup - 2019.04.21 at 18h 18m 40s.xml">
-      <configuration name="Unittests for test_auth_views.ViewsTestCase.test_signup" configurationId="tests" />
+    <history-entry file="Unittests_for_test_auth_views_ViewsTestCase_test_login - 2019.04.21 at 18h 54m 01s.xml">
+      <configuration name="Unittests for test_auth_views.ViewsTestCase.test_login" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_auth_views_ViewsTestCase_test_signup - 2019.04.21 at 18h 20m 26s.xml">
-      <configuration name="Unittests for test_auth_views.ViewsTestCase.test_signup" configurationId="tests" />
+    <history-entry file="Unittests_for_test_auth_views_ViewsTestCase_test_login - 2019.04.21 at 18h 54m 17s.xml">
+      <configuration name="Unittests for test_auth_views.ViewsTestCase.test_login" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_auth_views_ViewsTestCase_test_signup - 2019.04.21 at 18h 20m 42s.xml">
-      <configuration name="Unittests for test_auth_views.ViewsTestCase.test_signup" configurationId="tests" />
+    <history-entry file="Unittests_for_test_auth_views_ViewsTestCase_test_login - 2019.04.21 at 18h 55m 31s.xml">
+      <configuration name="Unittests for test_auth_views.ViewsTestCase.test_login" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_auth_views_ViewsTestCase_test_signup - 2019.04.21 at 18h 20m 56s.xml">
-      <configuration name="Unittests for test_auth_views.ViewsTestCase.test_signup" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_test_auth_views_ViewsTestCase_test_signup - 2019.04.21 at 18h 23m 35s.xml">
-      <configuration name="Unittests for test_auth_views.ViewsTestCase.test_signup" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_test_auth_views_ViewsTestCase_test_signup - 2019.04.21 at 18h 27m 07s.xml">
-      <configuration name="Unittests for test_auth_views.ViewsTestCase.test_signup" configurationId="tests" />
+    <history-entry file="Unittests_for_test_auth_views_ViewsTestCase_test_login - 2019.04.21 at 18h 56m 16s.xml">
+      <configuration name="Unittests for test_auth_views.ViewsTestCase.test_login" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -337,13 +310,13 @@
       <window_info id="Favorites" order="0" sideWeight="0.5005291" side_tool="true" weight="0.17495899" />
       <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4994709" visible="true" weight="0.17495899" />
       <window_info id="Structure" order="2" sideWeight="0.5005291" side_tool="true" weight="0.17495899" />
-      <window_info anchor="bottom" id="Terminal" order="0" weight="0.33439153" />
+      <window_info anchor="bottom" id="Terminal" order="0" visible="true" weight="0.33439153" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="2" weight="0.32910052" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.32910052" />
       <window_info anchor="bottom" id="Version Control" order="5" />
-      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.32910052" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.32910052" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -453,27 +426,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feature_lab/main/routes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="e#0#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/feature_lab/templates/product.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="10" column="12" lean-forward="true" selection-start-line="10" selection-start-column="12" selection-end-line="21" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feature_lab/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="37" lean-forward="true" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -621,22 +577,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feature_lab/clients/routes.py">
+    <entry file="file://$PROJECT_DIR$/feature_lab/templates/signup.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="33" column="81" selection-start-line="33" selection-start-column="81" selection-end-line="33" selection-end-column="81" />
-          <folding>
-            <element signature="e#0#95#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="114">
+          <caret line="6" column="51" selection-start-line="6" selection-start-column="51" selection-end-line="6" selection-end-column="65" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feature_lab/users/routes.py">
+    <entry file="file://$PROJECT_DIR$/tests/test_auth_views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        <state relative-caret-position="893">
+          <caret line="47" column="22" lean-forward="true" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
           <folding>
-            <element signature="e#0#79#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -651,27 +604,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feature_lab/templates/signup.html">
+    <entry file="file://$PROJECT_DIR$/feature_lab/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="51" selection-start-line="6" selection-start-column="51" selection-end-line="6" selection-end-column="65" />
+        <state relative-caret-position="406">
+          <caret line="45" column="58" selection-start-line="45" selection-start-column="58" selection-end-line="45" selection-end-column="58" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_auth_views.py">
+    <entry file="file://$PROJECT_DIR$/feature_lab/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="41" column="44" lean-forward="true" selection-start-line="41" selection-start-column="44" selection-end-line="41" selection-end-column="44" />
+        <state relative-caret-position="304">
+          <caret line="16" column="18" lean-forward="true" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature_lab/users/routes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#79#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feature_lab/templates/login.html">
+    <entry file="file://$PROJECT_DIR$/feature_lab/main/routes.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
-          <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="66" />
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="e#0#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature_lab/clients/routes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="302" lean-forward="true" selection-start-line="302" selection-end-line="302" />
+          <folding>
+            <element signature="e#0#95#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="17" lean-forward="true" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
         </state>
       </provider>
     </entry>
