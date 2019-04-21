@@ -53,7 +53,7 @@ class CreateClientForm(FlaskForm):
     email = EmailField('Email',
                        validators=[DataRequired(), Email()])
     phone_number = IntegerField('Phone Number',
-                                widget=NumberInput(min=0),
+                                widget=NumberInput(min=8, max=13),
                                 validators=[DataRequired()])
     priority = IntegerField('Priority', widget=NumberInput(min=1),
                             validators=[DataRequired()])
