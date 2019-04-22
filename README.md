@@ -34,12 +34,43 @@ Jinja2, WTForms, and jQuery were used to create the interactive templates of thi
 
 
 # Screenshots
+#### Home Page
 ![home](readme_media/home.png)
+#### User Profile
 ![profile](readme_media/profile.png)
+#### Clients List
 ![clients](readme_media/clients.png)
+#### Create Request
 ![create_request](readme_media/create_request.png)
+#### Deleting a Client
 ![delete](readme_media/delete.png)
 
 # Setting up
+#### Clone the repo
+```
+   git clone https://github.com/RafatAssaf/FeatureLab.git
+   cd FeatureLab   
+```
+
+#### Initialize virtual environment
+##### Assuming you have Python 3.* and python3-venv installed 
+```
+    python3 -m venv ./venv
+    source venv/bin/activate
+```
+
+#### Install the dependencies
+```
+    pip install -r requirements.txt
+```
 
 # Running the app
+#### Populate the database with mock data (optional)...
+```
+    python populate_db.py
+```
+
+#### ... and run
+```
+    python run.py
+```
