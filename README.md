@@ -45,7 +45,7 @@ Jinja2, WTForms, and jQuery were used to create the interactive templates of thi
 #### Deleting a Client
 ![delete](readme_media/delete.png)
 
-# Setting up
+# Setting up locally
 #### Clone the repo
 ```
    git clone https://github.com/RafatAssaf/FeatureLab.git
