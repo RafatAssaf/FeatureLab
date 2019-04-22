@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block content %}
-    <div class="content-section">
+    <div class="content-section col-10">
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
@@ -65,7 +65,7 @@
         </form>
     </div>
     {% if not hide_signup_option %}
-        <div class="border-top pt-3">
+        <div class="border-top pt-3 col-10">
             <small class="text-muted">
                 Already Have An Account? <a class="ml-2" href="{{ url_for('users.login') }}">Sign In</a>
             </small>
