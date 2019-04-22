@@ -13,14 +13,14 @@ clients = Blueprint('clients', __name__)
 
 @clients.route('/client/<int:client_id>')
 @login_required
-def client(client_id):
+def client(client_id):  # client page
     client = Client.query.get_or_404(int(client_id))
     return render_template('client.html', client=client)
 
 
 @clients.route('/clients')
 @login_required
-def clients_list():
+def clients_list(): # clients list page
     all_clients = Client.query.filter_by(user_id=current_user.id).all()
     return render_template('clients.html', clients=all_clients)
 
@@ -83,11 +83,32 @@ def delete_client(client_id):
     client = Client.query.get_or_404(client_id)
     if client.user != current_user:
         abort(403)
+    # get client products
+    client_products = Product.query.filter_by(owner_id=client_id).all()
+    client_requests = []
+    # get each product requests
+    for product in client_products:
+        client_requests += FeatureRequest.query.filter_by(product_id=product.id).all()
+    client_products_areas = []
+    # get each product areas
+    for product in client_products:
+        client_products_areas += ProductArea.query.filter_by(product_id=product.id).all()
+
+    # delete client products areas
+    for area in client_products_areas:
+        db.session.delete(area)
+    # delete client requests
+    for request in client_requests:
+        db.session.delete(request)
+    # delete client products
+    for product in client_products:
+        db.session.delete(product)
+    # and finally delete the client
     db.session.delete(client)
+
     db.session.commit()
     flash('Client has been deleted successfully', 'success')
     return redirect(url_for('clients.clients_list'))
-
 
 
 """ Products endpoints """
@@ -110,10 +131,13 @@ def create_product(client_id):
                               client_id)
         db.session.add(new_product)
         db.session.commit()
+        # split the areas string by commas
         areas = form.areas.data.split(',')
+        # and create a product area for each comma separated value
         for area in areas:
             new_area = ProductArea(area, new_product.id)
             db.session.add(new_area)
+
         db.session.commit()
         flash('Product {} has been successfully created!'.format(form.name.data), 'success')
         return redirect(url_for('clients.client', client_id=client_id))
@@ -158,17 +182,24 @@ def delete_product(product_id):
         abort(403)
     # delete the product areas first
     areas = ProductArea.query.filter_by(product_id=product_id)
+    requests = FeatureRequest.query.filter_by(product_id=product_id)
+    # delete the product's areas
     for area in areas:
         db.session.delete(area)
+    # delete the products requests
+    for request in requests:
+        db.session.delete(request)
+    # then delete the product itself
     db.session.delete(product)
+
     db.session.commit()
     flash('Product has been successfully deleted', 'success')
-    return redirect(url_for('clients.client', client_id=current_user.id))
+    return redirect(url_for('clients.client', client_id=product.owner_id))
 
 
 @clients.route('/products/<client_id>')
 @login_required
-def products(client_id):
+def products(client_id): # data endpoint to get a JSON response with client's products
     clients_products = Product.query.filter_by(owner_id=client_id).all()
     products_data = []
     for product in clients_products:
@@ -185,7 +216,7 @@ def products(client_id):
 
 
 @clients.route('/product_areas/<product_id>')
-@login_required
+@login_required # data endpoint to get a product's areas
 def product_areas(product_id):
     areas = ProductArea.query.filter_by(product_id=product_id).all()
     areas_data = []
@@ -206,8 +237,9 @@ def product_areas(product_id):
 
 @clients.route('/request/<int:request_id>')
 @login_required
-def feature_request(request_id):
+def feature_request(request_id):  # request page
     request = FeatureRequest.query.get_or_404(request_id)
+    # extract the enum values of request states
     request_states = list(map(lambda s: s, FeatureRequestState))
     return render_template('request.html', request=request, request_states=request_states)
 
