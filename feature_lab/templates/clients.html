@@ -8,7 +8,6 @@
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Created At</th>
-                <th scope="col">Priority</th>
                 <th scope="col">Phone Number</th>
                 <th scope="col">Products</th>
             </tr>
@@ -19,7 +18,6 @@
                     <th scope="row">{{client.name}}</th>
                     <td>{{client.email}}</td>
                     <td>{{client.created_at.strftime('%Y-%m-%d')}}</td>
-                    <td>{{client.priority}}</td>
                     <td>{{client.phone_number}}</td>
                     <td><a href="/client/{{client.id}}">View Client Page</a></td>
                 </tr>
