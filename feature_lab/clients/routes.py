@@ -30,19 +30,9 @@ def clients_list(): # clients list page
 def create_client():
     form = CreateClientForm()
     if form.validate_on_submit():
-        user_clients = Client.query.filter_by(user_id=current_user.id).order_by(Client.priority).all()
-        # compare the new client's priority with the existing clients' priorities
-        if not user_clients:
-            form.priority.data = 1  # ensure the first client has priority 1
-        elif form.priority.data > user_clients[-1].priority:
-            form.priority.data = user_clients[-1].priority + 1  # to avoid missing orders
-        else:  # else we have to reorder
-            for client in user_clients[form.priority.data - 1:]:
-                client.priority += 1
         new_client = Client(form.name.data,
                             form.email.data,
                             form.bio.data,
-                            form.priority.data,
                             form.phone_number.data,
                             current_user.id)
         db.session.add(new_client)
@@ -64,7 +54,6 @@ def update_client(client_id):
         form.email.data = client.email
         form.bio.data = client.bio
         form.phone_number.data = client.phone_number
-        form.priority.data = client.priority
         return render_template('create_client.html', form=form)
     elif form.validate_on_submit():
         # update clients data
@@ -72,7 +61,6 @@ def update_client(client_id):
         client.email = form.email.data
         client.bio = form.bio.data
         client.phone_number = form.phone_number.data
-        client.priority = form.priority.data
         db.session.commit()
         return redirect(url_for('clients.client', client_id=client.id))
 
@@ -262,13 +250,24 @@ def create_request():
         form.product_area.choices = [(area.name, area.name) for area in areas]
         return render_template('create_request.html', form=form)
     elif form.validate_on_submit():
+        # get all product's requests ordered by priority
+        prioirity_ordered_requests = FeatureRequest.query\
+            .filter_by(product_id=form.product.data).order_by(FeatureRequest.priority).all()
+        if not prioirity_ordered_requests:
+            form.priority.data = 1  # ensure the first client has priority 1
+        elif form.priority.data > prioirity_ordered_requests[-1].priority:
+            form.priority.data = prioirity_ordered_requests[-1].priority + 1  # to avoid missing priorities
+        else:  # else we have to reorder
+            for req in prioirity_ordered_requests[form.priority.data - 1:]:
+                req.priority += 1
         new_feature_request = FeatureRequest(form.title.data,
                                              form.description.data,
                                              form.created_at.data,
                                              form.target_date.data,
                                              form.product_area.data,
                                              form.product.data,
-                                             form.client.data)
+                                             form.client.data,
+                                             form.priority.data)
         db.session.add(new_feature_request)
         db.session.commit()
         flash('Request was created successfully!', 'success')
@@ -302,6 +301,7 @@ def update_request(request_id):
         form.description.data = request_data.description
         form.created_at.data = request_data.created_at
         form.target_date.data = request_data.target_date
+        form.priority.data = request_data.priority
         return render_template('create_request.html', form=form)
     elif form.validate_on_submit():
         # update request data with form data and commit the changes to the database
@@ -312,6 +312,7 @@ def update_request(request_id):
         request_data.client_id = form.client.data
         request_data.product_id = form.product.data
         request_data.product_area = form.product_area.data
+        request_data.priority = form.priority.data
         db.session.commit()
         flash('Feature request has been updated successfully', 'success')
         return redirect(url_for('clients.feature_request', request_id=request_id))

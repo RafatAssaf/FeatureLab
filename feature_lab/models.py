@@ -34,7 +34,6 @@ class Client(db.Model):
     name = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     bio = db.Column(db.Text(), nullable=False)
-    priority = db.Column(db.Integer, nullable=False, unique=True)
     phone_number = db.Column(db.String())
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     products = db.relationship('Product', backref='owner', lazy=True)
@@ -47,13 +46,11 @@ class Client(db.Model):
                  name,
                  email,
                  bio,
-                 priority,
                  phone_number,
                  user_id):
         self.name = name
         self.email = email
         self.bio = bio
-        self.priority = priority
         self.phone_number = phone_number
         self.user_id = user_id
 
@@ -107,6 +104,7 @@ class FeatureRequest(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
     state = db.Column(db.Enum(FeatureRequestState), default=FeatureRequestState.TODO)
+    priority = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
         return 'Request(title: {}, id: {})'.format(self.title, self.id)
@@ -118,7 +116,8 @@ class FeatureRequest(db.Model):
                  target_date,
                  product_area,
                  product_id,
-                 client_id):
+                 client_id,
+                 priority):
         self.title = title
         self.description = description
         self.created_at = created_at
@@ -126,3 +125,4 @@ class FeatureRequest(db.Model):
         self.product_area = product_area
         self.product_id = product_id
         self.client_id = client_id
+        self.priority = priority

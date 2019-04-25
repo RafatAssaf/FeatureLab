@@ -32,6 +32,8 @@ class CreateRequestForm(FlaskForm):
                            default=date.today())
     target_date = DateField('Target Date',
                             validators=[DataRequired()])
+    priority = IntegerField('Priority', widget=NumberInput(min=1),
+                            validators=[DataRequired()])
     submit = SubmitField('Create')
 
 
@@ -56,6 +58,4 @@ class CreateClientForm(FlaskForm):
     phone_number = IntegerField('Phone Number',
                                 widget=NumberInput(),
                                 validators=[DataRequired()])
-    priority = IntegerField('Priority', widget=NumberInput(min=1),
-                            validators=[DataRequired()])
     submit = SubmitField('Create')

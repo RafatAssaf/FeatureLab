@@ -22,11 +22,11 @@ db.session.commit()
 client_1 = Client('Kings Landing solutions',
                   'lannister@demo.com',
                   'Technical solutions across all of Westeros',
-                  1, '92387471989', user.id)
+                  '92387471989', user.id)
 client_2 = Client('Winterfell solutions',
                   'stark@demo.com',
                   'Technical solutions across all of the world',
-                  2, '74897928191', user.id)
+                  '74897928191', user.id)
 
 db.session.add(client_1)
 db.session.add(client_2)
@@ -65,35 +65,35 @@ requests = [
                    datetime(2019, 8, 15),
                    areas[0].name,
                    product_1.id,
-                   client_1.id),
+                   client_1.id, 1),
     FeatureRequest('Elastic Search',
                    'Setup and utilize Elastic Search',
                    datetime.utcnow(),
                    datetime(2019, 12, 1),
                    areas[1].name,
                    product_1.id,
-                   client_1.id),
+                   client_1.id, 2),
     FeatureRequest('Create pipeline',
                    'Create the data pipeline for the model',
                    datetime.utcnow(),
                    datetime(2019, 5, 27),
                    areas[4].name,
                    product_3.id,
-                   client_2.id),
+                   client_2.id, 1),
     FeatureRequest('Implement Neural Network',
                    'Implement the neural network using Keras',
                    datetime.utcnow(),
                    datetime(2019, 6, 12),
                    areas[5].name,
                    product_3.id,
-                   client_2.id),
+                   client_2.id, 2),
     FeatureRequest('Train NN',
                    'Train the neural network on training data, not on testing data!!',
                    datetime.utcnow(),
                    datetime(2019, 7, 7),
                    areas[6].name,
                    product_3.id,
-                   client_2.id)
+                   client_2.id, 3)
 ]
 
 for request in requests:

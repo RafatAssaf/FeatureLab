@@ -9,6 +9,7 @@
                             <h5 class="card-title">{{ request.title }}</h5>
                             <p class="card-text">{{ request.description }}</p>
                             <p class="text-secondary">Client: {{request.product.owner.name}}</p>
+                            <span class="badge badge-secondary p-2">Priority {{ request.priority }}</span>
                             <span class="badge badge-secondary p-2">{{ request.state.value }}</span>
                             <span class="badge badge-info p-2">{{ request.product.name }}</span>
                         </div>
@@ -17,9 +18,9 @@
             </div>
         {% endfor %}
     {% else %}
-        <div class="jumbotron col-10">
+        <div class="jumbotron">
             <h1 class="display-4">Welcome to Feature Lab!</h1>
-            <p class="lead">A management system for your clients products that allows you to handle their feature requests easily</p>
+            <p class="lead">A management system for your clients that allows you to handle their feature requests easily</p>
             <hr class="my-4">
             <p>You don't seem to have any feature request at the moment. </p>
             {% if current_user.clients %}
