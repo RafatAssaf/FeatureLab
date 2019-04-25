@@ -69,6 +69,9 @@ Jinja2, WTForms, and jQuery were used to create the interactive templates of thi
 ```
     python populate_db.py
 ```
+##### if you use populate_db.py, then you will have a testing account with the following credentials:
+##### email: rafat@demo.com
+##### password: Testing123$
 
 #### ... and run
 ```
