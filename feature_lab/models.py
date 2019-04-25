@@ -31,8 +31,8 @@ class User(db.Model, UserMixin):
 
 class Client(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(20), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
+    name = db.Column(db.String(20), nullable=False)
+    email = db.Column(db.String(120), nullable=False)
     bio = db.Column(db.Text(), nullable=False)
     phone_number = db.Column(db.String())
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
@@ -57,7 +57,7 @@ class Client(db.Model):
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(20), unique=True, nullable=False)
+    name = db.Column(db.String(20), nullable=False)
     description = db.Column(db.Text(), nullable=False)
     owner_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
     requests = db.relationship('FeatureRequest', backref='product', lazy=True)
@@ -96,7 +96,7 @@ class FeatureRequestState(enum.Enum):
 
 class FeatureRequest(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(30), unique=True, nullable=False)
+    title = db.Column(db.String(30), nullable=False)
     description = db.Column(db.Text(), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     target_date = db.Column(db.DateTime, nullable=False)
